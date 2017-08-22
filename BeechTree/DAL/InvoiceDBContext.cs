@@ -13,10 +13,12 @@ namespace BeechTree.DAL
             : base("PmData")
         {
             Database.SetInitializer<InvoiceDBContext>
-                (new DropCreateDatabaseIfModelChanges<InvoiceDBContext>());
+                (null);
         }
         
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<JobShift> JobShifts { get; set; }
 
     }
 }

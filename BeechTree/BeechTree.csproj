@@ -154,11 +154,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobShiftController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="DAL\InvoiceDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,6 +219,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\JobShift\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
