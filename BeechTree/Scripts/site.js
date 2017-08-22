@@ -1,3 +1,5 @@
+// Modal support
+
 $(function () {
     $.ajaxSetup({ cache: false });
     $("a[data-modal]").on("click", function (e) {
@@ -36,3 +38,7 @@ function bindForm(dialog) {
         return false;
     });
 }
+
+// Modal support
+
+

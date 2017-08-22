@@ -25,7 +25,7 @@
             </div>
             <div class="col-sm-5"></div>
             <div class="pull-right col-lg-1">
-                <a class="btn btn-success" data-modal="" href="/Phone/Create" id="btnCreate">
+                <a class="btn btn-success" data-modal="" href="/Job/Create" id="btnCreate">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
@@ -47,11 +47,11 @@
             tableStyle: "table table-bordered table-hover",
             mode: WebGridPagerModes.All,
             columns: grid.Columns(
-              grid.Column("Id"),
-              grid.Column("JobNo", "Job#"),
+              grid.Column("Id", style: "grid id"),
+              grid.Column("JobNo", "Job#", style:"grid jobno"),
               grid.Column(header: "Action", canSort: false, style: "action",
                 format: @<text>
-                @Html.Raw("<a data-modal='' href='/job/shifts/" + item.Id + "' id='" + item.Id + "' title='Shifts'> <span class='glyphicon glyphicon-align-justify'> </span> </a>")
+                @Html.Raw("<a data-modal='' href='/job/shifts/" + item.JobNo + "' id='" + item.JobNo + "' title='Shifts'> <span class='glyphicon glyphicon-align-justify'> </span> </a>")
                 @Html.Raw("<a data-modal='' href='/job/employees/" + item.Id + "' id='" + item.Id + "' title='Employees'> <span class='glyphicon glyphicon-user'> </span> </a>")
                 @Html.Raw("<a data-modal='' href='/job/equipments/" + item.Id + "' id='" + item.Id + "' title='Equipment'> <span class='glyphicon glyphicon-wrench'> </span> </a>")
                 @Html.Raw("<a data-modal='' href='/job/invoice/" + item.Id + "' id='" + item.Id + "' title='Invoice'> <span class='glyphicon glyphicon-list-alt'> </span> </a>")
