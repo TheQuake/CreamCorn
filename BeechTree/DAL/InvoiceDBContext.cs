@@ -18,6 +18,8 @@ namespace BeechTree.DAL
         
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<JobEmployee> JobEmployees { get; set; }
+        public DbSet<JobEquipment> JobEquipments { get; set; }
         public DbSet<JobShift> JobShifts { get; set; }
 
     }

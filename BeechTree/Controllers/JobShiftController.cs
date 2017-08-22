@@ -40,6 +40,20 @@ namespace BeechTree.Controllers
 
         }
 
+        // GET: /Phone/Details/5
+        public ActionResult Details(int id = 0)
+        {
+            JobShift record = db.JobShifts.Find(id);
+            if (record == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("Details", record);
+        }
+
+
+
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

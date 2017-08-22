@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BeechTree.Controllers
 {
-	public class JobController : Controller
+	public class JobEmployeeController : Controller
     {
         private InvoiceDBContext db = new InvoiceDBContext();
         //http://www.advancesharp.com/blog/1125/search-sort-paging-insert-update-and-delete-with-asp-net-mvc-and-bootstrap-modal-popup-part-1
@@ -16,9 +16,9 @@ namespace BeechTree.Controllers
         // GET: /Phone/
         public ActionResult Index(string filter = null, int page = 1, int pageSize = 5, string sort = "Id", string sortdir = "DESC")
         {
-            var records = new PagedList<Job>();
+            var records = new PagedList<JobEmployee>();
             ViewBag.filter = filter;
-            records.Content = db.Jobs
+            records.Content = db.JobEmployees 
                         .Where(x => filter == null ||
                                 (x.JobNo.Contains(filter))
                                    || x.JobNo.Contains(filter)
@@ -29,7 +29,7 @@ namespace BeechTree.Controllers
                         .ToList();
 
             // Count
-            records.TotalRecords = db.Jobs
+            records.TotalRecords = db.JobEmployees
                          .Where(x => filter == null ||
                                (x.JobNo.Contains(filter)) || x.JobNo.Contains(filter)).Count();
 
@@ -39,29 +39,6 @@ namespace BeechTree.Controllers
             return View(records);
 
         }
-
-
-        public ActionResult Equipments(int id = 0)
-        {
-            Job record = db.Jobs.Find(id);
-            if (record == null)
-            {
-                return HttpNotFound();
-            }
-            return PartialView(record);
-        }
-
-        public ActionResult Shifts(int id = 0)
-        {
-            Job record = db.Jobs.Find(id);
-            if (record == null)
-            {
-                return HttpNotFound();
-            }
-            return PartialView(record);
-        }
-
-
 
         protected override void Dispose(bool disposing)
         {
