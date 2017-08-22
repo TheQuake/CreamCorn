@@ -7,45 +7,50 @@
 
 <div class="modal-body">
 
-    <div class="well">
+    @*<div class="well">
         @using (Html.BeginForm("index", null, FormMethod.Get))
         {
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="input-group">
+        }
+    </div>*@
 
-                        <input type="text"
-                               name="filter"
-                               value="@ViewBag.filter"
-                               class="form-control"
-                               style="display: inline"
-                               placeholder="Search by job number" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">Go</button>
-                        </span>
 
-                    </div>
-                </div>
-                <div class="col-sm-5"></div>
-                <div class="pull-right col-lg-1">
-                    <a class="btn btn-success" data-modal="" href="/Job/Create" id="btnCreate">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </a>
-                </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+
+                <input type="text"
+                       name="filter"
+                       value="@ViewBag.filter"
+                       class="form-control"
+                       style="display: inline"
+                       placeholder="Search by job number" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go</button>
+                </span>
+
             </div>
+        </div>
+        <div class="col-sm-5"></div>
+        <div class="pull-right col-lg-1">
+            <a class="btn btn-success" data-modal="" href="/Job/Create" id="btnCreate">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
 
-            <div style="margin-top:17px;">
-                @{
-                    var grid = new WebGrid(
-                                canPage: true,
-                                rowsPerPage: Model.PageSize,
-                                canSort: true,
-                                ajaxUpdateContainerId: "grid");
+    <div style="margin-top:17px;">
+        @{
+            var grid = new WebGrid(
+                        canPage: true,
+                        rowsPerPage: Model.PageSize,
+                        canSort: true,
+                        ajaxUpdateContainerId: "grid");
 
-                    grid.Bind(Model.Content, rowCount: Model.TotalRecords, autoSortAndPage: false);
-                    grid.Pager(WebGridPagerModes.All);
+            grid.Bind(Model.Content, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
 
-                    @grid.GetHtml(htmlAttributes: new { ajaxUpdateContainerId = "grid" },   // id for ajaxUpdateContainerId parameter
+            @grid.GetHtml(htmlAttributes: new { ajaxUpdateContainerId = "grid" },   // id for ajaxUpdateContainerId parameter
             fillEmptyRows: false,
             tableStyle: "table table-bordered table-hover",
             mode: WebGridPagerModes.All,
@@ -55,12 +60,15 @@
               grid.Column("ShiftNo", "Shift#", style: "grid shiftno"),
               grid.Column("ShiftDate", "Date", style: "grid date")
             ));
-                }
+        }
 
 
-            </div>
-                    }
     </div>
+
+
+
+
+
 
 </div>
 

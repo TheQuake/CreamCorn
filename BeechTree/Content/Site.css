@@ -25,11 +25,8 @@ textarea {
 
 
 /* Grid styles */
-.grid.date {
-    width: 20px;
-}
+.grid.date {width: 20px;}
 .grid.id {width:20px;}
 .grid.jobno {width:100px;}
 .grid.shiftno {width:10px;}
-
 /* Grid styles */
