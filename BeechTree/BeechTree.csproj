@@ -154,9 +154,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JobEmployeeController.cs" />
-    <Compile Include="Controllers\JobEquipmentController.cs" />
-    <Compile Include="Controllers\JobShiftController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="DAL\InvoiceDBContext.cs" />
@@ -173,6 +170,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\logo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -221,11 +219,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\JobShift\Index.cshtml" />
-    <Content Include="Views\JobEquipment\Index.cshtml" />
-    <Content Include="Views\JobEmployee\Index.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\Job\Shifts.cshtml" />
+    <Content Include="Views\Job\Equipments.cshtml" />
+    <Content Include="Views\Job\Employees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

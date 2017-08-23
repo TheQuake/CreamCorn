@@ -39,14 +39,48 @@ namespace BeechTree.Controllers
         }
 
 
-        public ActionResult Equipments(int id = 0)
+        public ActionResult Employees(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
         {
-            Job record = db.Jobs.Find(id);
-            if (record == null)
+            var records = new PagedList<JobEmployee>
             {
-                return HttpNotFound();
-            }
-            return PartialView(record);
+                Content = db.JobEmployees
+                        .Where(x => x.JobNo == id)
+                        .OrderBy(sort + " " + sortdir)
+                        .Skip((page - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToList(),
+
+                // Count
+                TotalRecords = db.Jobs
+                         .Where(x => x.JobNo == id).Count(),
+
+                CurrentPage = page,
+                PageSize = pageSize
+            };
+
+            return PartialView(records);
+
+        }
+
+        public ActionResult Equipments(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
+        {
+            var records = new PagedList<JobEquipment>();
+            records.Content = db.JobEquipments
+                        .Where(x => x.JobNo == id)
+                        .OrderBy(sort + " " + sortdir)
+                        .Skip((page - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToList();
+
+            // Count
+            records.TotalRecords = db.Jobs
+                         .Where(x => x.JobNo == id).Count();
+
+            records.CurrentPage = page;
+            records.PageSize = pageSize;
+
+            return PartialView(records);
+
         }
 
         public ActionResult Shifts(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")

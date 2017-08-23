@@ -52,8 +52,8 @@
               grid.Column(header: "Action", canSort: false, style: "action",
                 format: @<text>
                 @Html.Raw("<a data-modal='' href='/job/shifts/" + item.JobNo + "' id='" + item.JobNo + "' title='Shifts'> <span class='glyphicon glyphicon-align-justify'> </span> </a>")
-                @Html.Raw("<a data-modal='' href='/job/employees/" + item.Id + "' id='" + item.Id + "' title='Employees'> <span class='glyphicon glyphicon-user'> </span> </a>")
-                @Html.Raw("<a data-modal='' href='/job/equipments/" + item.Id + "' id='" + item.Id + "' title='Equipment'> <span class='glyphicon glyphicon-wrench'> </span> </a>")
+                @Html.Raw("<a data-modal='' href='/job/employees/" + item.JobNo + "' id='" + item.JobNo + "' title='Employees'> <span class='glyphicon glyphicon-user'> </span> </a>")
+                @Html.Raw("<a data-modal='' href='/job/equipments/" + item.JobNo + "' id='" + item.JobNo + "' title='Equipment'> <span class='glyphicon glyphicon-wrench'> </span> </a>")
                 @Html.Raw("<a data-modal='' href='/job/invoice/" + item.Id + "' id='" + item.Id + "' title='Invoice'> <span class='glyphicon glyphicon-list-alt'> </span> </a>")
                 </text>)
 

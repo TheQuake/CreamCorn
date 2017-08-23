@@ -1,0 +1,80 @@
+﻿@model BeechTree.Models.PagedList<BeechTree.Models.JobEmployee>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 class="modal-title">Job Employee List</h3>
+</div>
+
+<div class="modal-body">
+
+    @*<div class="well">
+        @using (Html.BeginForm("index", null, FormMethod.Get))
+        {
+        }
+    </div>*@
+
+
+
+    @*<div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+
+                <input type="text"
+                       name="filter"
+                       value="@ViewBag.filter"
+                       class="form-control"
+                       style="display: inline"
+                       placeholder="Search by job number" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go</button>
+                </span>
+
+            </div>
+        </div>
+        <div class="col-sm-5"></div>
+        <div class="pull-right col-lg-1">
+            <a class="btn btn-success" data-modal="" href="/Job/Create" id="btnCreate">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>*@
+
+    <div style="margin-top:17px;">
+        @{
+            var grid = new WebGrid(
+                        canPage: true,
+                        rowsPerPage: Model.PageSize,
+                        canSort: true,
+                        ajaxUpdateContainerId: "grid");
+
+            grid.Bind(Model.Content, rowCount: Model.TotalRecords, autoSortAndPage: false);
+            grid.Pager(WebGridPagerModes.All);
+
+            @grid.GetHtml(htmlAttributes: new { ajaxUpdateContainerId = "grid" },   // id for ajaxUpdateContainerId parameter
+            fillEmptyRows: false,
+            tableStyle: "table table-bordered table-hover",
+            mode: WebGridPagerModes.All,
+            columns: grid.Columns(
+              grid.Column("Id", style: "grid id"),
+              grid.Column("JobNo", "Job#", style: "grid jobno"),
+              grid.Column("ShiftNo", "Shift#", style: "grid shiftno"),
+              grid.Column("ShiftDate", "Date", style: "grid date"),
+              grid.Column("Name", style: "grid date"),
+              grid.Column("Number", style: "grid date"),
+              grid.Column("Title", style: "grid date")
+            ));
+        }
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-warning" data-dismiss="modal">Close</button>
+</div>
