@@ -66,7 +66,7 @@ namespace BeechTree.Controllers
             records.CurrentPage = page;
             records.PageSize = pageSize;
 
-            return View(records);
+            return PartialView(records);
 
         }
 
