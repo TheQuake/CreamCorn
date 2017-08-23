@@ -1,8 +1,8 @@
-﻿@model BeechTree.Models.PagedList<BeechTree.Models.Job>
+﻿@model BeechTree.Models.PagedList<BeechTree.Models.JobEquipment>
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 class="modal-title">Job Shift List</h3>
+    <h3 class="modal-title">Job Equipment List</h3>
 </div>
 
 <div class="modal-body">
@@ -58,7 +58,9 @@
               grid.Column("Id", style: "grid id"),
               grid.Column("JobNo", "Job#", style: "grid jobno"),
               grid.Column("ShiftNo", "Shift#", style: "grid shiftno"),
-              grid.Column("ShiftDate", "Date", style: "grid date")
+              grid.Column("ShiftDate", "Date", style: "grid date"),
+              grid.Column("Qty", style: "grid date"),
+              grid.Column("Item", style: "grid date")
             ));
         }
 

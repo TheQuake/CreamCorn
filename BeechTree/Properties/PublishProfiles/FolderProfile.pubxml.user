@@ -22,10 +22,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/22/2017 12:28:07</publishTime>
     </File>
     <File Include="bin/BeechTree.dll">
-      <publishTime>08/22/2017 15:11:16</publishTime>
+      <publishTime>08/23/2017 10:57:34</publishTime>
     </File>
     <File Include="bin/BeechTree.pdb">
-      <publishTime>08/22/2017 15:11:16</publishTime>
+      <publishTime>08/23/2017 10:57:34</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>08/22/2017 12:28:08</publishTime>
@@ -264,11 +264,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/bootstrap.min.css.map">
       <publishTime>08/22/2017 12:28:07</publishTime>
     </File>
+    <File Include="Content/logo.png">
+      <publishTime>04/19/2017 12:54:50</publishTime>
+    </File>
     <File Include="Content/Site.css">
-      <publishTime>08/22/2017 15:06:43</publishTime>
+      <publishTime>08/23/2017 09:35:47</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>08/22/2017 12:28:07</publishTime>
+      <publishTime>08/23/2017 10:51:26</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>08/22/2017 12:28:07</publishTime>
@@ -349,13 +352,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2017 11:52:32</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>08/22/2017 12:49:07</publishTime>
+      <publishTime>08/23/2017 10:56:23</publishTime>
+    </File>
+    <File Include="Views/Job/Employees.cshtml">
+      <publishTime>08/23/2017 10:36:38</publishTime>
+    </File>
+    <File Include="Views/Job/Equipments.cshtml">
+      <publishTime>08/23/2017 10:34:57</publishTime>
     </File>
     <File Include="Views/Job/Index.cshtml">
-      <publishTime>08/22/2017 14:54:43</publishTime>
+      <publishTime>08/23/2017 10:36:51</publishTime>
     </File>
     <File Include="Views/Job/Shifts.cshtml">
-      <publishTime>08/22/2017 15:07:02</publishTime>
+      <publishTime>08/23/2017 09:38:07</publishTime>
     </File>
     <File Include="Views/JobEmployee/Index.cshtml">
       <publishTime>08/22/2017 13:23:01</publishTime>
@@ -370,7 +379,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/22/2017 12:28:07</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/22/2017 13:25:13</publishTime>
+      <publishTime>08/23/2017 09:35:20</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>08/22/2017 12:28:07</publishTime>
