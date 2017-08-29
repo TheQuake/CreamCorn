@@ -1,0 +1,14 @@
+﻿@model BeechTree.Models.Invoice
+
+
+<h1><span class="glyphicon glyphicon-list-alt"></span> Invoice for Job @Html.DisplayFor(m => m.JobNumber)</h1>
+<div class="well"></div>
+
+    @using (Html.BeginForm("index", null, FormMethod.Get))
+    {
+        @Html.DisplayFor(m => m.EagleAddress.CompanyName)
+        @Html.DisplayFor(m => m.EagleAddress.FirstName)
+        @Html.DisplayFor(m => m.EagleAddress.LastName)
+
+    }
+

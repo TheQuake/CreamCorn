@@ -10,19 +10,16 @@ namespace BeechTree.Models
     {
         [Display(Name = "ID")]
         [Key]
-        public int PhoneId { get; set; }
+        public int Id { get; set; }
 
-        [Required]
-        [Display(Name = "Model Name")]
-        public string Model { get; set; }
+        public string JobNumber { get; set; }
 
-        [Required]
-        [Display(Name = "Company Name")]
-        public string Company { get; set; }
+        public Address EagleAddress { get; set; }
 
-        [Required]
-        [Display(Name = "Price")]
-        [DataType(DataType.Currency)]
-        public decimal Price { get; set; }
+        public Address BillTo { get; set; }
+
+        public Address ShipTo { get; set; }
+
+
     }
 }
