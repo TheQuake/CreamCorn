@@ -23,24 +23,38 @@ namespace BeechTree.Controllers
 
             Address billTo = new Address()
             {
-                FirstName = "Joe",
-                LastName = "Blow",
-                CompanyName = "US Steel"
+                CompanyName = "US Steel",
+                CompanyNumber = "MIT120",
+                Address1 = "250 US Hwy 12",
+                Address2 = "",
+                City = "Burns Harbor",
+                State = "IN",
+                Zip = "46304",
             };
 
             Address eagle = new Address()
             {
                 FirstName = "Eddie",
                 LastName = "Eagleman",
-                CompanyName = "Eagle Services"
+                CompanyName = "Eagle Services Corporation",
+                Address1 = "2702 Beech Street",
+                Address2 = "",
+                City="Valparaiso",
+                State="IN",
+                Zip ="46383",
+                Phone = "219-464-8888",
+                Web = "www.eagleservices.com"
             };
 
             Invoice i = new Invoice()
             {
+                Id = 12345,
                 JobNumber = jobNumber,
                 EagleAddress = eagle,
                 ShipTo=shipTo,
-                BillTo=billTo
+                BillTo=billTo,
+                PurchaseOrderNumber="PO12345",
+                Terms = "Net 30"
             };
 
 

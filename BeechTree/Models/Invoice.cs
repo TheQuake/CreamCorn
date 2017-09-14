@@ -12,6 +12,8 @@ namespace BeechTree.Models
         [Key]
         public int Id { get; set; }
 
+        public string PurchaseOrderNumber { get; set; }
+
         public string JobNumber { get; set; }
 
         public Address EagleAddress { get; set; }
@@ -19,6 +21,8 @@ namespace BeechTree.Models
         public Address BillTo { get; set; }
 
         public Address ShipTo { get; set; }
+
+        public string Terms { get; set; }
 
 
     }

@@ -225,6 +225,7 @@
     <Content Include="Views\Job\Equipments.cshtml" />
     <Content Include="Views\Job\Employees.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout-Bare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
