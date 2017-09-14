@@ -147,7 +147,6 @@ C:\_Projects\MRH\beechtree\BeechTree\bin\System.Web.Razor.xml
 C:\_Projects\MRH\beechtree\BeechTree\bin\System.Web.WebPages.xml
 C:\_Projects\MRH\beechtree\BeechTree\bin\System.Web.WebPages.Deployment.xml
 C:\_Projects\MRH\beechtree\BeechTree\bin\System.Web.WebPages.Razor.xml
-C:\_Projects\MRH\beechtree\BeechTree\obj\Debug\BeechTree.csprojResolveAssemblyReference.cache
 C:\_Projects\MRH\beechtree\BeechTree\obj\Debug\BeechTree.csproj.CoreCompileInputs.cache
 C:\_Projects\MRH\beechtree\BeechTree\obj\Debug\BeechTree.dll
 C:\_Projects\MRH\beechtree\BeechTree\obj\Debug\BeechTree.pdb

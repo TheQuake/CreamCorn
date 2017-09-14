@@ -99,3 +99,4 @@ D:\_Projects\MRH\beechtree\BeechTree\obj\Release\BeechTree.csprojResolveAssembly
 D:\_Projects\MRH\beechtree\BeechTree\obj\Release\BeechTree.csproj.CoreCompileInputs.cache
 D:\_Projects\MRH\beechtree\BeechTree\obj\Release\BeechTree.dll
 D:\_Projects\MRH\beechtree\BeechTree\obj\Release\BeechTree.pdb
+C:\_Projects\MRH\beechtree\BeechTree\obj\Release\BeechTree.csprojResolveAssemblyReference.cache
