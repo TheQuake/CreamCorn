@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BeechTree.Controllers
 {
-	public class JobController : Controller
+	public class JobController : BaseController
     {
         private InvoiceDBContext db = new InvoiceDBContext();
 
@@ -36,6 +36,12 @@ namespace BeechTree.Controllers
 
             return View(records);
 
+        }
+
+        public ActionResult Invoice(string id)
+        {
+            Invoice i = db.InvoiceGet(id);
+            return Pdf("invoice.pdf", "Invoice", i, true);
         }
 
 
@@ -103,8 +109,6 @@ namespace BeechTree.Controllers
             return PartialView(records);
 
         }
-
-
 
         protected override void Dispose(bool disposing)
         {

@@ -1,0 +1,143 @@
+﻿@model BeechTree.Models.Invoice
+
+
+<div class="row pad-top-botm ">
+    <div class="col-lg-6 col-md-6 col-sm-6 ">
+        <img src="~/Content/logo-bw.jpg" style="width:262px;height:120px;" />
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+
+        <strong>@Model.EagleAddress.CompanyName</strong>
+        <br />
+        @Model.EagleAddress.Address1
+        <br />
+        @Model.EagleAddress.City, @Model.EagleAddress.State @Model.EagleAddress.Zip
+        <br />
+        @Model.EagleAddress.Phone
+        <br />
+        @Model.EagleAddress.Web
+
+        <h3>Invoice</h3>
+
+    </div>
+</div>
+<div class="row pad-top-botm client-info" style="margin-top:40px;">
+
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <strong>@Model.BillTo.CompanyName</strong>
+        <br />
+        @Model.BillTo.Address1
+        <br />
+        @Model.BillTo.City, @Model.BillTo.State @Model.BillTo.Zip
+        <br />
+        <br />
+        Invoice No. @Model.Id
+        <br />
+        Purchase Order No. @Model.PurchaseOrderNumber
+        <br />
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6">
+
+        @Model.ShipTo.FirstName
+        <br />
+        @Model.ShipTo.CompanyName
+        <br />
+        @Model.ShipTo.LastName
+        <br />
+        <div style="margin-top:20px;">
+            <b>EAGLE Project No. @Model.JobNumber</b>
+            <br />
+            Terms: @Model.Terms
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:40px;">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Date</th>
+                        <th>Shift</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>8/19/17</td>
+                        <td>0700-1900</td>
+                        <td>4,201.56</td>
+                    </tr>
+                    <tr>
+                        <td>Monday</td>
+                        <td>8/24/17</td>
+                        <td>0700-1900</td>
+                        <td>2,501.56</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>8/25/17</td>
+                        <td>0700-1900</td>
+                        <td>3,460.54</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <div class="ttl-amts">
+            <h5>  Total Amount : 900 USD </h5>
+        </div>
+        <hr />
+        <div class="ttl-amts">
+            <h5>  Tax : 90 USD ( by 10 % on bill ) </h5>
+        </div>
+        <hr />
+        <div class="ttl-amts">
+            <h4> <strong>Bill Amount : 990 USD</strong> </h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <strong> Important: </strong>
+        <ol>
+            <li>
+                This is an electronic generated invoice so doesn't require any signature.
+
+            </li>
+            <li>
+                Please read all terms and polices on  www.yourdomaon.com for returns, replacement and other issues.
+
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row pad-top-botm" style="margin-top:60px;">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <strong>Please Remit To:</strong>
+        <br />
+        <strong>@Model.EagleAddress.CompanyName</strong>
+        <br />
+        @Model.EagleAddress.Address1
+        <br />
+        @Model.EagleAddress.City, @Model.EagleAddress.State @Model.EagleAddress.Zip
+        <br />
+    </div>
+</div>
+
+
+<div class="row pad-top-botm" style="margin-top:60px;">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        Thank you for your business
+    </div>
+</div>

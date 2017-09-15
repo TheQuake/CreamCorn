@@ -20,7 +20,7 @@ namespace BeechTree.Controllers
 
             Invoice i = loadSampleData(jobNumber);
 
-            Invoice i2 = db.Get(jobNumber);
+            Invoice i2 = db.InvoiceGet(jobNumber);
 
             // **TODO get from db or settings, not from sample data
             i2.EagleAddress = i.EagleAddress;

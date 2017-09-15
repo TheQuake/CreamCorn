@@ -159,6 +159,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -234,7 +236,7 @@
     <Content Include="Views\Job\Shifts.cshtml" />
     <Content Include="Views\Job\Equipments.cshtml" />
     <Content Include="Views\Job\Employees.cshtml" />
-    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Job\Invoice.cshtml" />
     <Content Include="Views\Shared\_Layout-Bare.cshtml" />
   </ItemGroup>
   <ItemGroup />
