@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Linq.Dynamic;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
@@ -49,9 +50,43 @@ namespace BeechTree.Controllers
             string template = Server.MapPath("~/Templates/Invoice.docx");
             using (DocX doc = DocX.Load(template))
             {
-                string value = i.JobNumber;
-                string token = string.Format("{{{0}}}", "JobNumber");
-                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+
+                string value = string.Empty;
+                string token = string.Empty;
+
+                PropertyInfo[] pi = i.GetType().GetProperties();
+                foreach (PropertyInfo p in pi)
+                {
+                    switch (p.Name.ToLower())
+                    {
+                        case "billto":
+                            PropertyInfo[] pb = i.BillTo.GetType().GetProperties();
+                            foreach (PropertyInfo pib in pb)
+                            {
+                                token = string.Format("{{{0}}}", pib.Name);
+                                value = pib.GetValue(i.BillTo).ToString();
+                                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+                            }
+                            break;
+                        case "eagle":
+                            PropertyInfo[] pe = i.EagleAddress.GetType().GetProperties();
+                            foreach (PropertyInfo pie in pe)
+                            {
+                                token = string.Format("{{{0}}}", pie.Name);
+                                value = pie.GetValue(i.EagleAddress).ToString();
+                                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+                            }
+                            break;
+                        case "shipto":
+                            break;
+                        default:
+                            token = string.Format("{{{0}}}", p.Name);
+                            value = p.GetValue(i).ToString();
+                            doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+                            break;
+                    }
+                }
+
                 //doc.SaveAs(path_documents);
 
                 return WordDocument(doc, template, fileName);
