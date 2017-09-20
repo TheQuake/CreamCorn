@@ -107,6 +107,7 @@ C:\_Projects\MRH\beechtree\BeechTree\bin\BeechTree.dll.config
 C:\_Projects\MRH\beechtree\BeechTree\bin\BeechTree.dll
 C:\_Projects\MRH\beechtree\BeechTree\bin\BeechTree.pdb
 C:\_Projects\MRH\beechtree\BeechTree\bin\Antlr3.Runtime.dll
+C:\_Projects\MRH\beechtree\BeechTree\bin\DocX.dll
 C:\_Projects\MRH\beechtree\BeechTree\bin\EntityFramework.dll
 C:\_Projects\MRH\beechtree\BeechTree\bin\EntityFramework.SqlServer.dll
 C:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.dll
