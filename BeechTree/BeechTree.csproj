@@ -239,6 +239,7 @@
     <Content Include="Views\Job\Equipments.cshtml" />
     <Content Include="Views\Job\Employees.cshtml" />
     <Content Include="Views\Job\Invoice.cshtml" />
+    <Content Include="Templates\Invoice.docx" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

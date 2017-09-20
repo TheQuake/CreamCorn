@@ -1,8 +1,11 @@
 ﻿using BeechTree.DAL;
 using BeechTree.Models;
+using Novacode;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Linq.Dynamic;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 
@@ -41,6 +44,21 @@ namespace BeechTree.Controllers
         public ActionResult Invoice(string id)
         {
             Invoice i = db.InvoiceGet(id);
+
+            string fileName = string.Format("Invoice_{0}.docx", i.JobNumber);
+            string template = Server.MapPath("~/Templates/Invoice.docx");
+            using (DocX doc = DocX.Load(template))
+            {
+                string value = i.JobNumber;
+                string token = string.Format("{{{0}}}", "JobNumber");
+                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+                //doc.SaveAs(path_documents);
+
+                return WordDocument(doc, template, fileName);
+
+            }
+
+            // only return pdf if DocX fails.
             return Pdf("invoice.pdf", "Invoice", i, true);
         }
 

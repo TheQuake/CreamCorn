@@ -1,11 +1,30 @@
-﻿using System.Web.Mvc;
+﻿using Novacode;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Web.Mvc;
 
 namespace BeechTree.Controllers
 {
     public class BaseController : Controller
     {
 
-        // So far, just some PDF stuff ...
+        // So far, just some DocX & PDF stuff ...
+
+        protected ActionResult WordDocument(DocX doc, string template, string fileName)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                doc.SaveAs(ms);
+
+                Response.Clear();
+                Response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}", fileName));
+                Response.ContentType = "application/msword";
+                ms.WriteTo(Response.OutputStream);
+                Response.End();
+            }
+
+            return null;
+        }
 
         protected ActionResult Pdf()
         {
