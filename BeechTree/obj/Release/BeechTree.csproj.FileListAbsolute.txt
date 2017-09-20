@@ -100,3 +100,6 @@ D:\_Projects\MRH\beechtree\BeechTree\obj\Release\BeechTree.csproj.CoreCompileInp
 D:\_Projects\MRH\beechtree\BeechTree\obj\Release\BeechTree.dll
 D:\_Projects\MRH\beechtree\BeechTree\obj\Release\BeechTree.pdb
 C:\_Projects\MRH\beechtree\BeechTree\obj\Release\BeechTree.csprojResolveAssemblyReference.cache
+C:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.dll
+C:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.xmlworker.dll
+C:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.xml
