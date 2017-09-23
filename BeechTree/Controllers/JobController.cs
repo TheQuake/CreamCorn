@@ -86,6 +86,15 @@ namespace BeechTree.Controllers
                                 doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
                             }
                             break;
+                        case "remitto":
+                            PropertyInfo[] pr = i.RemitTo.GetType().GetProperties();
+                            foreach (PropertyInfo pir in pr)
+                            {
+                                token = string.Format("{{{0}.{1}}}", p.Name, pir.Name);
+                                value = string.Format("{0}", pir.GetValue(i.RemitTo));
+                                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+                            }
+                            break;
                         default:
                             token = string.Format("{{{0}}}", p.Name);
                             value = string.Format("{0}", p.GetValue(i));

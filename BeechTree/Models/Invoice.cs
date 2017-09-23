@@ -30,6 +30,8 @@ namespace BeechTree.Models
 
         public Address BillTo { get; set; }
 
+        public Address RemitTo { get; set; }
+
         public Address ShipTo { get; set; }
 
         public string Terms { get; set; }

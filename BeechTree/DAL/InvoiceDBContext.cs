@@ -50,6 +50,7 @@ namespace BeechTree.DAL
                 Web = "www.eagleservices.com"
             };
             i.EagleAddress = eagle;
+            i.RemitTo = eagle;
 
             using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["PmData"].ToString()))
             {
