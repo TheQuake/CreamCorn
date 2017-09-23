@@ -63,28 +63,37 @@ namespace BeechTree.Controllers
                             PropertyInfo[] pb = i.BillTo.GetType().GetProperties();
                             foreach (PropertyInfo pib in pb)
                             {
-                                token = string.Format("{{{0}}}", pib.Name);
-                                value = pib.GetValue(i.BillTo).ToString();
+                                token = string.Format("{{{0}.{1}}}", p.Name, pib.Name);
+                                value = string.Format("{0}", pib.GetValue(i.BillTo));
                                 doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
                             }
                             break;
-                        case "eagle":
+                        case "eagleaddress":
                             PropertyInfo[] pe = i.EagleAddress.GetType().GetProperties();
                             foreach (PropertyInfo pie in pe)
                             {
-                                token = string.Format("{{{0}}}", pie.Name);
-                                value = pie.GetValue(i.EagleAddress).ToString();
+                                token = string.Format("{{{0}.{1}}}", p.Name, pie.Name);
+                                value = string.Format("{0}", pie.GetValue(i.EagleAddress));
                                 doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
                             }
                             break;
                         case "shipto":
+                            PropertyInfo[] ps = i.ShipTo.GetType().GetProperties();
+                            foreach (PropertyInfo pis in ps)
+                            {
+                                token = string.Format("{{{0}.{1}}}", p.Name, pis.Name);
+                                value = string.Format("{0}", pis.GetValue(i.ShipTo));
+                                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+                            }
                             break;
                         default:
                             token = string.Format("{{{0}}}", p.Name);
-                            value = p.GetValue(i).ToString();
+                            value = string.Format("{0}", p.GetValue(i));
                             doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
                             break;
                     }
+
+
                 }
 
                 //doc.SaveAs(path_documents);

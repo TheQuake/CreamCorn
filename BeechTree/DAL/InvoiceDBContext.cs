@@ -31,9 +31,25 @@ namespace BeechTree.DAL
             Invoice i = new Invoice();
 
             // during testing
-            i = loadSampleData(jobNumber);
-            return i;
+            //i = loadSampleData(jobNumber);
+            //return i;
             // during testing
+
+            // ****TODO - get from db or config
+            Address eagle = new Address()
+            {
+                FirstName = "Eddie",
+                LastName = "Eagleman",
+                CompanyName = "Eagle Services Corporation",
+                Address1 = "2702 Beech Street",
+                Address2 = "",
+                City = "Valparaiso",
+                State = "IN",
+                Zip = "46383",
+                Phone = "219-464-8888",
+                Web = "www.eagleservices.com"
+            };
+            i.EagleAddress = eagle;
 
             using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["PmData"].ToString()))
             {
