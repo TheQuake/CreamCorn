@@ -14,7 +14,7 @@ namespace BeechTree.Models
             EagleAddress = new Address();
             BillTo = new Address();
             ShipTo = new Address();
-            LineItems = new List<InvoiceLineItems>();
+            LineItems = new List<InvoiceLineItem>();
         }
 
 
@@ -36,10 +36,10 @@ namespace BeechTree.Models
 
         public string Terms { get; set; }
 
-        List<InvoiceLineItems> LineItems { get; set; }
+        public List<InvoiceLineItem> LineItems { get; set; }
 
     }
-    public class InvoiceLineItems
+    public class InvoiceLineItem
     {
         public string Day { get; set; }
         public DateTime Date { get; set; }

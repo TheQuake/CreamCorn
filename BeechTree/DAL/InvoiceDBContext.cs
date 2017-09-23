@@ -35,6 +35,23 @@ namespace BeechTree.DAL
             //return i;
             // during testing
 
+            // ****TODO - testing
+            for (int j = 0; j < 40; j++)
+            {
+                InvoiceLineItem li = new InvoiceLineItem()
+                {
+                    Amount = j, 
+                    Date = DateTime.Now,
+                    Day = "Monday",
+                    Shift = "9-5",
+                    ShiftDate = DateTime.Now,
+                    ShiftNumber = "1"
+                };
+                i.LineItems.Add(li);
+            }
+            // ****TODO - testing
+
+
             // ****TODO - get from db or config
             Address eagle = new Address()
             {
