@@ -1,6 +1,8 @@
 ﻿using BeechTree.DAL;
 using BeechTree.Models;
 using Novacode;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -76,6 +78,9 @@ namespace BeechTree.Controllers
                                 value = string.Format("{0}", pie.GetValue(i.EagleAddress));
                                 doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
                             }
+                            break;
+                        case "lineitems":
+                            doc.InsertTable(LineItemsTable(doc, i.LineItems));
                             break;
                         case "shipto":
                             PropertyInfo[] ps = i.ShipTo.GetType().GetProperties();
@@ -180,6 +185,31 @@ namespace BeechTree.Controllers
             return PartialView(records);
 
         }
+
+
+        private Table LineItemsTable(DocX doc, List<InvoiceLineItem> items)
+        {
+            Table t = doc.AddTable(items.Count, 10);
+            t.Alignment = Alignment.center;
+            t.Design = TableDesign.LightGridAccent6;
+
+            t.Rows[0].Cells[0].Paragraphs.First().Append("Day");
+            t.Rows[0].Cells[1].Paragraphs.First().Append("Date");
+            t.Rows[0].Cells[2].Paragraphs.First().Append("Shift");
+            t.Rows[0].Cells[3].Paragraphs.First().Append("Amount");
+
+            for (int i = 0; i < items.Count - 1; i++)
+            {
+                t.Rows[i + 1].Cells[0].Paragraphs.First().Append(items[i].Day);
+                t.Rows[i + 1].Cells[1].Paragraphs.First().Append(items[i].Date.ToShortDateString());
+                t.Rows[i + 1].Cells[2].Paragraphs.First().Append(items[i].Shift);
+                t.Rows[i + 1].Cells[3].Paragraphs.First().Append(items[i].Amount.ToString());
+            }
+
+            return t;
+
+        }
+
 
         protected override void Dispose(bool disposing)
         {

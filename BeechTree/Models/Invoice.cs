@@ -41,6 +41,10 @@ namespace BeechTree.Models
     }
     public class InvoiceLineItem
     {
+        [Display(Name = "ID")]
+        [Key]
+        public int InvoiceId { get; set; }
+
         public string Day { get; set; }
         public DateTime Date { get; set; }
         public string Shift { get; set; }
