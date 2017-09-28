@@ -80,7 +80,10 @@ namespace BeechTree.Controllers
                             }
                             break;
                         case "lineitems":
-                            doc.InsertTable(LineItemsTable(doc, i.LineItems));
+                            Table t = LineItemsTable(doc, i.LineItems);
+                            Table placeholderTable = doc.Tables[0];
+                            placeholderTable.InsertTableAfterSelf(t);
+                            placeholderTable.Remove();
                             break;
                         case "shipto":
                             PropertyInfo[] ps = i.ShipTo.GetType().GetProperties();
@@ -191,7 +194,7 @@ namespace BeechTree.Controllers
         {
             Table t = doc.AddTable(items.Count, 10);
             t.Alignment = Alignment.center;
-            t.Design = TableDesign.LightGridAccent6;
+            t.Design = TableDesign.LightGrid;
 
             t.Rows[0].Cells[0].Paragraphs.First().Append("Day");
             t.Rows[0].Cells[1].Paragraphs.First().Append("Date");
