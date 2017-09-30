@@ -33,8 +33,6 @@ namespace BeechTree.DAL
             // get shifts (job in lieu of job master)
             List<Job> shifts = this.InvoiceShiftsGet(jobNumber);
 
-            // get "day" for shift start & stop
-
 
             // calc employee price
             List<JobEmployee> employees = this.InvoiceEmployeesGet(jobNumber);
