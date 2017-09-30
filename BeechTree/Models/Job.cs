@@ -25,6 +25,13 @@ namespace BeechTree.Models
         [Display(Name = "Shift Date")]
         public DateTime ShiftDate { get; set; }
 
+        [Required]
+        [Display(Name = "Shift Start")]
+        public string ShiftStart { get; set; }
+        [Required]
+        [Display(Name = "Shift Stop")]
+        public string ShiftStop { get; set; }
+
     }
 
     [Table("PmJobEmploy")]
@@ -82,6 +89,9 @@ namespace BeechTree.Models
 
         [Required]
         public string Item { get; set; }
+
+        [Required]
+        public decimal price_actual { get; set; }
 
     }
 

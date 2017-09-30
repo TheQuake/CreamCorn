@@ -30,26 +30,30 @@ namespace BeechTree.DAL
 
             Invoice i = new Invoice();
 
-            // during testing
-            //i = loadSampleData(jobNumber);
-            //return i;
-            // during testing
+            // get shifts (job in lieu of job master)
+            List<Job> shifts = this.InvoiceShiftsGet(jobNumber);
 
-            // ****TODO - testing
-            for (int j = 0; j < 40; j++)
+            // get "day" for shift start & stop
+
+
+            // calc employee price
+            List<JobEmployee> employees = this.InvoiceEmployeesGet(jobNumber);
+
+            // calc equipment price
+            List<JobEquipment> equipments = this.InvoiceEquipmentsGet(jobNumber);
+            
+            foreach (Job j in shifts)
             {
                 InvoiceLineItem li = new InvoiceLineItem()
                 {
-                    Amount = j, 
-                    Date = DateTime.Now,
-                    Day = "Monday",
-                    Shift = "9-5",
-                    ShiftDate = DateTime.Now,
-                    ShiftNumber = "1"
+                    Amount = equipments[2].price_actual, 
+                    Day = employees[0].Name,
+                    Shift = string.Format("{0} - {1}", j.ShiftStart, j.ShiftStop),
+                    ShiftDate = j.ShiftDate,
+                    ShiftNumber = j.ShiftNo.ToString()
                 };
                 i.LineItems.Add(li);
             }
-            // ****TODO - testing
 
 
             // ****TODO - get from db or config
@@ -82,6 +86,7 @@ namespace BeechTree.DAL
                     {
                         dr.Read();
                         i.JobNumber = jobNumber;
+                        i.Date = DateTime.Now;
                         i.PurchaseOrderNumber = dr["PurchaseOrderNumber"].ToString();
                         i.Terms = dr["Terms"].ToString();
                         i.BillTo.CompanyNumber = dr["CompanyNumber"].ToString();
@@ -104,54 +109,35 @@ namespace BeechTree.DAL
 
             return i;
         }
-
-        private Invoice loadSampleData(string jobNumber)
+        public List<JobEmployee> InvoiceEmployeesGet(string jobNumber)
         {
-            Address shipTo = new Address()
-            {
-                FirstName = "Joe",
-                LastName = "Blow",
-                CompanyName = "US Steel"
-            };
+            var records = this.JobEmployees
+                        .Where(x => x.JobNo.Equals(jobNumber))
+                        .OrderBy(x => x.Id)
+                        .ToList();
 
-            Address billTo = new Address()
-            {
-                CompanyName = "US Steel",
-                CompanyNumber = "MIT120",
-                Address1 = "250 US Hwy 12",
-                Address2 = "",
-                City = "Burns Harbor",
-                State = "IN",
-                Zip = "46304",
-            };
+            return records;
+        }
 
-            Address eagle = new Address()
-            {
-                FirstName = "Eddie",
-                LastName = "Eagleman",
-                CompanyName = "Eagle Services Corporation",
-                Address1 = "2702 Beech Street",
-                Address2 = "",
-                City = "Valparaiso",
-                State = "IN",
-                Zip = "46383",
-                Phone = "219-464-8888",
-                Web = "www.eagleservices.com"
-            };
+        public List<JobEquipment> InvoiceEquipmentsGet(string jobNumber)
+        {
+            var records = this.JobEquipments
+                        .Where(x => x.JobNo.Equals(jobNumber))
+                        .OrderBy(x => x.Id)
+                        .ToList();
 
-            Invoice i = new Invoice()
-            {
-                Id = 12345,
-                JobNumber = jobNumber,
-                EagleAddress = eagle,
-                ShipTo = shipTo,
-                BillTo = billTo,
-                PurchaseOrderNumber = "PO12345",
-                Terms = "Net 30"
-            };
+            return records;
+        }
 
-            return i;
+        public List<Job> InvoiceShiftsGet(string jobNumber)
+        {
+            // when job master is located, this can be pmshiftdata
+            var records = this.Jobs
+                        .Where(x => x.JobNo.Equals(jobNumber))
+                        .OrderBy(x => x.Id)
+                        .ToList();
 
+            return records;
         }
 
 

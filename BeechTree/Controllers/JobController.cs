@@ -103,6 +103,14 @@ namespace BeechTree.Controllers
                                 doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
                             }
                             break;
+                        case "date":
+                            token = string.Format("{{{0}}}", p.Name);
+                            value = string.Format("{0}", p.GetValue(i));
+                            DateTime dt;
+                            DateTime.TryParse(value, out dt);
+                            value = dt.ToShortDateString();
+                            doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+                            break;
                         default:
                             token = string.Format("{{{0}}}", p.Name);
                             value = string.Format("{0}", p.GetValue(i));
@@ -192,19 +200,21 @@ namespace BeechTree.Controllers
 
         private Table LineItemsTable(DocX doc, List<InvoiceLineItem> items)
         {
-            Table t = doc.AddTable(items.Count, 10);
+            // rows + heaader row
+            Table t = doc.AddTable(items.Count + 1, 5);
             t.Alignment = Alignment.center;
             t.Design = TableDesign.LightGrid;
 
+            // table header row
             t.Rows[0].Cells[0].Paragraphs.First().Append("Day");
             t.Rows[0].Cells[1].Paragraphs.First().Append("Date");
             t.Rows[0].Cells[2].Paragraphs.First().Append("Shift");
             t.Rows[0].Cells[3].Paragraphs.First().Append("Amount");
 
-            for (int i = 0; i < items.Count - 1; i++)
+            for (int i = 0; i < items.Count; i++)
             {
                 t.Rows[i + 1].Cells[0].Paragraphs.First().Append(items[i].Day);
-                t.Rows[i + 1].Cells[1].Paragraphs.First().Append(items[i].Date.ToShortDateString());
+                t.Rows[i + 1].Cells[1].Paragraphs.First().Append(items[i].ShiftDate.ToShortDateString());
                 t.Rows[i + 1].Cells[2].Paragraphs.First().Append(items[i].Shift);
                 t.Rows[i + 1].Cells[3].Paragraphs.First().Append(items[i].Amount.ToString());
             }
