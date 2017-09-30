@@ -47,7 +47,7 @@ namespace BeechTree.DAL
                 InvoiceLineItem li = new InvoiceLineItem()
                 {
                     Amount = equipments[2].price_actual, 
-                    Day = employees[0].Name,
+                    Day = j.ShiftDate.DayOfWeek.ToString(),
                     Shift = string.Format("{0} - {1}", j.ShiftStart, j.ShiftStop),
                     ShiftDate = j.ShiftDate,
                     ShiftNumber = j.ShiftNo.ToString()
