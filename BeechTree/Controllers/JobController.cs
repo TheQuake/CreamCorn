@@ -125,6 +125,11 @@ namespace BeechTree.Controllers
                             value = string.Format("{0}", c.TermsCode);
                             doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
                             break;
+                        case "total":
+                            token = string.Format("{{{0}}}", p.Name);
+                            value = string.Format("{0:C}", i.Total);
+                            doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+                            break;
                         default:
                             token = string.Format("{{{0}}}", p.Name);
                             value = string.Format("{0}", p.GetValue(i));
@@ -215,7 +220,7 @@ namespace BeechTree.Controllers
         private Table LineItemsTable(DocX doc, List<InvoiceLineItem> items)
         {
             // rows + heaader row
-            Table t = doc.AddTable(items.Count + 1, 5);
+            Table t = doc.AddTable(items.Count + 1, 4);
             t.Alignment = Alignment.center;
             t.Design = TableDesign.LightGrid;
 
@@ -230,7 +235,7 @@ namespace BeechTree.Controllers
                 t.Rows[i + 1].Cells[0].Paragraphs.First().Append(items[i].Day);
                 t.Rows[i + 1].Cells[1].Paragraphs.First().Append(items[i].ShiftDate.ToShortDateString());
                 t.Rows[i + 1].Cells[2].Paragraphs.First().Append(items[i].Shift);
-                t.Rows[i + 1].Cells[3].Paragraphs.First().Append(items[i].Amount.ToString());
+                t.Rows[i + 1].Cells[3].Paragraphs.First().Append(items[i].Amount.ToString("N2"));
             }
 
             return t;

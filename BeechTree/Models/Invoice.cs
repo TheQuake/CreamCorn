@@ -37,6 +37,7 @@ namespace BeechTree.Models
         public Address ShipTo { get; set; }
 
         public string Terms { get; set; }
+        public decimal Total { get; set; }
 
         public List<InvoiceLineItem> LineItems { get; set; }
 

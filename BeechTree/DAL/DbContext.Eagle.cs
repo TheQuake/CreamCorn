@@ -20,7 +20,7 @@ namespace BeechTree.DAL
 
         public Customer CustomerGet(string customerNumber)
         {
-            return (Customer)this.Customers.Where(x => x.CustId.Equals(customerNumber));
+            return (Customer)this.Customers.Where(x => x.CustId.Equals(customerNumber)).FirstOrDefault();
 
         }
 
@@ -36,7 +36,7 @@ namespace BeechTree.DAL
 
         public Job JobGet(string jobNumber)
         {
-            return (Job) this.Jobs.Where(x => x.JobNo.Equals(jobNumber));
+            return (Job) this.Jobs.Where(x => x.JobNo.Equals(jobNumber)).FirstOrDefault();
 
         }
 

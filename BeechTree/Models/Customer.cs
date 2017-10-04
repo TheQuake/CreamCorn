@@ -12,7 +12,6 @@ namespace BeechTree.Models
     {
         public Customer()
         {
-            Address = new Address();
         }
 
         [Display(Name = "Customer Id")]
@@ -22,7 +21,17 @@ namespace BeechTree.Models
         [Display(Name = "Customer Name")]
         public string CustName { get; set; }
 
-        public Address Address { get; set; }
+        [Display(Name = "Address")]
+        public string Addr1 { get; set; }
+
+        public string Addr2 { get; set; }
+
+        public string City { get; set; }
+
+        public string Region { get; set; }
+
+        public string PostalCode { get; set; }
+
 
         [Display(Name = "Terms")]
         public string TermsCode { get; set; }

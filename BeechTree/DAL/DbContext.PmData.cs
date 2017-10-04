@@ -32,27 +32,30 @@ namespace BeechTree.DAL
             // get shifts (job in lieu of job master)
             List<JobShift> shifts = this.InvoiceShiftsGet(jobNumber);
 
-
             // calc employee price
             List<JobEmployee> employees = this.InvoiceEmployeesGet(jobNumber);
+            decimal totalLabor = TotalLabor(employees);
 
             // calc equipment price
             List<JobEquipment> equipments = this.InvoiceEquipmentsGet(jobNumber);
+            decimal totalEquipment = TotalEquipment(equipments);
 
-            // get customer info
+            i.Total = totalEquipment + totalLabor;
 
-            
+            int lineItemCount = 0;
+
             foreach (JobShift s in shifts)
             {
                 InvoiceLineItem li = new InvoiceLineItem()
                 {
-                    Amount = equipments[2].price_actual, 
+                    Amount = equipments[lineItemCount].price_actual, 
                     Day = s.ShiftDate.DayOfWeek.ToString(),
                     Shift = string.Format("{0} - {1}", s.ShiftStart, s.ShiftStop),
                     ShiftDate = s.ShiftDate,
                     ShiftNumber = s.ShiftNo.ToString()
                 };
                 i.LineItems.Add(li);
+                lineItemCount++;
             }
 
 
@@ -137,6 +140,27 @@ namespace BeechTree.DAL
                         .ToList();
 
             return records;
+        }
+
+        public decimal TotalEquipment(List<JobEquipment> items)
+        {
+            decimal d = 0;
+            foreach (JobEquipment item in items)
+            {
+                d += item.price_actual * item.Qty;
+            }
+            return d;
+        }
+
+        public decimal TotalLabor(List<JobEmployee> items)
+        {
+            decimal d = 0;
+            foreach (JobEmployee item in items)
+            {
+                // ***TODO
+                //d += item..price_actual * item.Qty;
+            }
+            return d;
         }
 
 

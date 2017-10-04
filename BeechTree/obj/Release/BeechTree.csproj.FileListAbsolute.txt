@@ -104,3 +104,7 @@ C:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.dll
 C:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.xmlworker.dll
 C:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.xml
 C:\_Projects\MRH\beechtree\BeechTree\bin\DocX.dll
+D:\_Projects\MRH\beechtree\BeechTree\bin\DocX.dll
+D:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.dll
+D:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.xmlworker.dll
+D:\_Projects\MRH\beechtree\BeechTree\bin\itextsharp.xml
