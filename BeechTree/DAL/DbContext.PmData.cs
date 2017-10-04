@@ -10,17 +10,16 @@ using System.Data;
 
 namespace BeechTree.DAL
 {
-    public class InvoiceDBContext : DbContext
+    public class DbContext_PmData : DbContext
     {        
-        public InvoiceDBContext()
+        public DbContext_PmData()
             : base("PmData")
         {
-            Database.SetInitializer<InvoiceDBContext>
+            Database.SetInitializer<DbContext_PmData>
                 (null);
         }
         
         public DbSet<Invoice> Invoices { get; set; }
-        public DbSet<Job> Jobs { get; set; }
         public DbSet<JobEmployee> JobEmployees { get; set; }
         public DbSet<JobEquipment> JobEquipments { get; set; }
         public DbSet<JobShift> JobShifts { get; set; }
@@ -31,7 +30,7 @@ namespace BeechTree.DAL
             Invoice i = new Invoice();
 
             // get shifts (job in lieu of job master)
-            List<Job> shifts = this.InvoiceShiftsGet(jobNumber);
+            List<JobShift> shifts = this.InvoiceShiftsGet(jobNumber);
 
 
             // calc employee price
@@ -39,16 +38,19 @@ namespace BeechTree.DAL
 
             // calc equipment price
             List<JobEquipment> equipments = this.InvoiceEquipmentsGet(jobNumber);
+
+            // get customer info
+
             
-            foreach (Job j in shifts)
+            foreach (JobShift s in shifts)
             {
                 InvoiceLineItem li = new InvoiceLineItem()
                 {
                     Amount = equipments[2].price_actual, 
-                    Day = j.ShiftDate.DayOfWeek.ToString(),
-                    Shift = string.Format("{0} - {1}", j.ShiftStart, j.ShiftStop),
-                    ShiftDate = j.ShiftDate,
-                    ShiftNumber = j.ShiftNo.ToString()
+                    Day = s.ShiftDate.DayOfWeek.ToString(),
+                    Shift = string.Format("{0} - {1}", s.ShiftStart, s.ShiftStop),
+                    ShiftDate = s.ShiftDate,
+                    ShiftNumber = s.ShiftNo.ToString()
                 };
                 i.LineItems.Add(li);
             }
@@ -127,10 +129,9 @@ namespace BeechTree.DAL
             return records;
         }
 
-        public List<Job> InvoiceShiftsGet(string jobNumber)
+        public List<JobShift> InvoiceShiftsGet(string jobNumber)
         {
-            // when job master is located, this can be pmshiftdata
-            var records = this.Jobs
+            var records = this.JobShifts
                         .Where(x => x.JobNo.Equals(jobNumber))
                         .OrderBy(x => x.Id)
                         .ToList();

@@ -1,43 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace BeechTree.Models
 {
+    [Table("tblArCust")]
     public class Customer
     {
-        [Display(Name = "Company Name")]
-        public string CompanyName { get; set; }
+        public Customer()
+        {
+            Address = new Address();
+        }
 
-        [Display(Name = "Company Number")]
-        public string CompanyNumber { get; set; }
+        [Display(Name = "Customer Id")]
+        [Key]
+        public string CustId { get; set; }
 
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        [Display(Name = "Customer Name")]
+        public string CustName { get; set; }
 
-        [Display(Name = "First Name")]
-        public string LastName { get; set; }
+        public Address Address { get; set; }
 
-        [Display(Name = "Address")]
-        public string Address1 { get; set; }
-
-        public string Address2 { get; set; }
-
-        public string City { get; set; }
-
-        public string State { get; set; }
-
-        public string Zip { get; set; }
-
-        public string Phone { get; set; }
-
-        public string Fax { get; set; }
-
-        public string Email { get; set; }
-
-        public string Web { get; set; }
+        [Display(Name = "Terms")]
+        public string TermsCode { get; set; }
 
 
     }

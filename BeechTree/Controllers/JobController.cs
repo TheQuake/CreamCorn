@@ -16,13 +16,14 @@ namespace BeechTree.Controllers
 {
 	public class JobController : BaseController
     {
-        private InvoiceDBContext db = new InvoiceDBContext();
+        private DbContext_Eagle dbEagle = new DbContext_Eagle();
+        private DbContext_PmData dbPmData = new DbContext_PmData();
 
         public ActionResult Index(string filter = null, int page = 1, int pageSize = 5, string sort = "Id", string sortdir = "DESC")
         {
             var records = new PagedList<Job>();
             ViewBag.filter = filter;
-            records.Content = db.Jobs
+            records.Content = dbEagle.Jobs
                         .Where(x => filter == null ||
                                 (x.JobNo.Contains(filter))
                                    || x.JobNo.Contains(filter)
@@ -33,7 +34,7 @@ namespace BeechTree.Controllers
                         .ToList();
 
             // Count
-            records.TotalRecords = db.Jobs
+            records.TotalRecords = dbEagle.Jobs
                          .Where(x => filter == null ||
                                (x.JobNo.Contains(filter)) || x.JobNo.Contains(filter)).Count();
 
@@ -46,7 +47,15 @@ namespace BeechTree.Controllers
 
         public ActionResult Invoice(string id)
         {
-            Invoice i = db.InvoiceGet(id);
+            // id = jobNumber
+
+            // get invoice/job info
+            Invoice i = dbPmData.InvoiceGet(id);
+            Job j = dbEagle.JobGet(id);
+
+            // get customer
+            Customer c = dbEagle.CustomerGet(j.CustNo);
+
 
             string fileName = string.Format("Invoice_{0}.docx", i.JobNumber);
             string template = Server.MapPath("~/Templates/Invoice.docx");
@@ -111,6 +120,11 @@ namespace BeechTree.Controllers
                             value = dt.ToShortDateString();
                             doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
                             break;
+                        case "terms":
+                            token = string.Format("{{{0}}}", p.Name);
+                            value = string.Format("{0}", c.TermsCode);
+                            doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+                            break;
                         default:
                             token = string.Format("{{{0}}}", p.Name);
                             value = string.Format("{0}", p.GetValue(i));
@@ -136,7 +150,7 @@ namespace BeechTree.Controllers
         {
             var records = new PagedList<JobEmployee>
             {
-                Content = db.JobEmployees
+                Content = dbPmData.JobEmployees
                         .Where(x => x.JobNo == id)
                         .OrderBy(sort + " " + sortdir)
                         .Skip((page - 1) * pageSize)
@@ -144,7 +158,7 @@ namespace BeechTree.Controllers
                         .ToList(),
 
                 // Count
-                TotalRecords = db.Jobs
+                TotalRecords = dbPmData.JobEmployees
                          .Where(x => x.JobNo == id).Count(),
 
                 CurrentPage = page,
@@ -158,7 +172,7 @@ namespace BeechTree.Controllers
         public ActionResult Equipments(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
         {
             var records = new PagedList<JobEquipment>();
-            records.Content = db.JobEquipments
+            records.Content = dbPmData.JobEquipments
                         .Where(x => x.JobNo == id)
                         .OrderBy(sort + " " + sortdir)
                         .Skip((page - 1) * pageSize)
@@ -166,7 +180,7 @@ namespace BeechTree.Controllers
                         .ToList();
 
             // Count
-            records.TotalRecords = db.Jobs
+            records.TotalRecords = dbPmData.JobEquipments
                          .Where(x => x.JobNo == id).Count();
 
             records.CurrentPage = page;
@@ -178,8 +192,8 @@ namespace BeechTree.Controllers
 
         public ActionResult Shifts(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
         {
-            var records = new PagedList<Job>();
-            records.Content = db.Jobs
+            var records = new PagedList<JobShift>();
+            records.Content = dbPmData.JobShifts
                         .Where( x => x.JobNo == id)
                         .OrderBy(sort + " " + sortdir)
                         .Skip((page - 1) * pageSize)
@@ -187,7 +201,7 @@ namespace BeechTree.Controllers
                         .ToList();
 
             // Count
-            records.TotalRecords = db.Jobs
+            records.TotalRecords = dbPmData.JobShifts
                          .Where(x => x.JobNo == id).Count();
 
             records.CurrentPage = page;
@@ -226,7 +240,8 @@ namespace BeechTree.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            dbEagle.Dispose();
+            dbPmData.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeechTree.Models
 {
-    [Table("PmJobShift")]
+    [Table("JcJobs01")]
     public class Job
     {
         // need actual job master table here
@@ -18,19 +18,8 @@ namespace BeechTree.Models
         public string JobNo { get; set; }
 
         [Required]
-        [Display(Name = "Shift#")]
-        public int ShiftNo { get; set; }
-
-        [Required]
-        [Display(Name = "Shift Date")]
-        public DateTime ShiftDate { get; set; }
-
-        [Required]
-        [Display(Name = "Shift Start")]
-        public string ShiftStart { get; set; }
-        [Required]
-        [Display(Name = "Shift Stop")]
-        public string ShiftStop { get; set; }
+        [Display(Name = "Customer#")]
+        public string CustNo { get; set; }
 
     }
 
@@ -95,11 +84,9 @@ namespace BeechTree.Models
 
     }
 
-    //[Table("PmJobShift")]
+    [Table("PmJobShift")]
     public class JobShift
     {
-
-        // once job master is located, this can become pmjobshift
 
         [Display(Name = "Id")]
         [Key]
@@ -110,8 +97,19 @@ namespace BeechTree.Models
         public string JobNo { get; set; }
 
         [Required]
+        [Display(Name = "Shift#")]
+        public int ShiftNo { get; set; }
+
+        [Required]
         [Display(Name = "Shift Date")]
         public DateTime ShiftDate { get; set; }
+
+        [Required]
+        [Display(Name = "Shift Start")]
+        public string ShiftStart { get; set; }
+        [Required]
+        [Display(Name = "Shift Stop")]
+        public string ShiftStop { get; set; }
 
     }
 
