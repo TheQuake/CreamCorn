@@ -165,11 +165,13 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="DAL\DbContext.Eagle.cs" />
     <Compile Include="DAL\InvoiceDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\PdfHelper.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Invoice.cs" />
