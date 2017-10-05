@@ -48,7 +48,7 @@ namespace BeechTree.DAL
             {
                 InvoiceLineItem li = new InvoiceLineItem()
                 {
-                    Amount = equipments[lineItemCount].price_actual, 
+                    Amount = totalEquipment, 
                     Day = s.ShiftDate.DayOfWeek.ToString(),
                     Shift = string.Format("{0} - {1}", s.ShiftStart, s.ShiftStop),
                     ShiftDate = s.ShiftDate,
@@ -157,7 +157,7 @@ namespace BeechTree.DAL
             decimal d = 0;
             foreach (JobEquipment item in items)
             {
-                d += item.price_actual * item.Qty;
+                d += item.price_actual * (decimal) item.UnitQty_Actual;
             }
             return d;
         }

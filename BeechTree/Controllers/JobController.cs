@@ -236,8 +236,12 @@ namespace BeechTree.Controllers
                 t.Rows[i + 1].Cells[1].Paragraphs.First().Append(items[i].ShiftDate.ToShortDateString());
                 t.Rows[i + 1].Cells[2].Paragraphs.First().Append(items[i].Shift);
                 t.Rows[i + 1].Cells[3].Paragraphs.First().Append(items[i].Amount.ToString("N2"));
+
+                t.Rows[i + 1].Cells[3].SetDirection(Direction.RightToLeft);
+
             }
 
+            t.AutoFit = AutoFit.ColumnWidth;
             return t;
 
         }

@@ -20,8 +20,11 @@ namespace BeechTree.DAL
 
         public Customer CustomerGet(string customerNumber)
         {
-            return (Customer)this.Customers.Where(x => x.CustId.Equals(customerNumber)).FirstOrDefault();
-
+            Customer c = this.Customers.Where(x => x.CustId.Equals(customerNumber)).FirstOrDefault();
+            int i = 0;
+            int.TryParse(c.TermsCode, out i);
+            c.TermsCode = string.Format("Net {0}", i);
+            return c;
         }
 
         public List<Customer> CustomersGet(string customerId)

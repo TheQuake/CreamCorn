@@ -8,36 +8,36 @@
 <div class="modal-body">
 
     @*<div class="well">
-        @using (Html.BeginForm("index", null, FormMethod.Get))
-        {
-        }
-    </div>*@
+            @using (Html.BeginForm("index", null, FormMethod.Get))
+            {
+            }
+        </div>*@
 
 
 
     @*<div class="row">
-        <div class="col-sm-4">
-            <div class="input-group">
+            <div class="col-sm-4">
+                <div class="input-group">
 
-                <input type="text"
-                       name="filter"
-                       value="@ViewBag.filter"
-                       class="form-control"
-                       style="display: inline"
-                       placeholder="Search by job number" />
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit">Go</button>
-                </span>
+                    <input type="text"
+                           name="filter"
+                           value="@ViewBag.filter"
+                           class="form-control"
+                           style="display: inline"
+                           placeholder="Search by job number" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go</button>
+                    </span>
 
+                </div>
             </div>
-        </div>
-        <div class="col-sm-5"></div>
-        <div class="pull-right col-lg-1">
-            <a class="btn btn-success" data-modal="" href="/Job/Create" id="btnCreate">
-                <span class="glyphicon glyphicon-plus"></span>
-            </a>
-        </div>
-    </div>*@
+            <div class="col-sm-5"></div>
+            <div class="pull-right col-lg-1">
+                <a class="btn btn-success" data-modal="" href="/Job/Create" id="btnCreate">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>*@
 
     <div style="margin-top:17px;">
         @{
@@ -50,7 +50,9 @@
             grid.Bind(Model.Content, rowCount: Model.TotalRecords, autoSortAndPage: false);
             grid.Pager(WebGridPagerModes.All);
 
-            @grid.GetHtml(htmlAttributes: new { ajaxUpdateContainerId = "grid" },   // id for ajaxUpdateContainerId parameter
+            if (Model.TotalRecords > 0)
+            {
+                @grid.GetHtml(htmlAttributes: new { ajaxUpdateContainerId = "grid" },   // id for ajaxUpdateContainerId parameter
             fillEmptyRows: false,
             tableStyle: "table table-bordered table-hover",
             mode: WebGridPagerModes.All,
@@ -63,6 +65,12 @@
               grid.Column("Number", style: "grid date"),
               grid.Column("Title", style: "grid date")
             ));
+            }
+            else
+            {
+                @Html.Raw("<div>There are no employees for this job</div>")
+            }
+
         }
 
 

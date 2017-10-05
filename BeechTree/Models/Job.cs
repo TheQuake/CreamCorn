@@ -74,7 +74,7 @@ namespace BeechTree.Models
 
         [Required]
         [Display(Name = "Qty")]
-        public decimal Qty { get; set; }
+        public double UnitQty_Actual { get; set; }
 
         [Required]
         public string Item { get; set; }
