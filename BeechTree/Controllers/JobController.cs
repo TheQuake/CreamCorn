@@ -50,7 +50,7 @@ namespace BeechTree.Controllers
             // id = jobNumber
 
             // get invoice/job info
-            Invoice i = dbPmData.InvoiceGet(id);
+            InvoiceViewModel i = dbPmData.InvoiceCreate(id);
             Job j = dbEagle.JobGet(id);
 
             // get customer

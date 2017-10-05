@@ -24,20 +24,20 @@ namespace BeechTree.DAL
         public DbSet<JobEquipment> JobEquipments { get; set; }
         public DbSet<JobShift> JobShifts { get; set; }
 
-        public Invoice InvoiceGet(string jobNumber)
+        public InvoiceViewModel InvoiceCreate(string jobNumber)
         {
 
-            Invoice i = new Invoice();
+            InvoiceViewModel i = new InvoiceViewModel();
 
             // get shifts (job in lieu of job master)
-            List<JobShift> shifts = this.InvoiceShiftsGet(jobNumber);
+            List<JobShift> shifts = this.JobShiftsGet(jobNumber);
 
             // calc employee price
-            List<JobEmployee> employees = this.InvoiceEmployeesGet(jobNumber);
+            List<JobEmployee> employees = this.JobEmployeesGet(jobNumber);
             decimal totalLabor = TotalLabor(employees);
 
             // calc equipment price
-            List<JobEquipment> equipments = this.InvoiceEquipmentsGet(jobNumber);
+            List<JobEquipment> equipments = this.JobEquipmentsGet(jobNumber);
             decimal totalEquipment = TotalEquipment(equipments);
 
             i.Total = totalEquipment + totalLabor;
@@ -110,9 +110,19 @@ namespace BeechTree.DAL
 
             }
 
+            i.InvoiceNumber = InvoiceGetNextNumber();
             return i;
         }
-        public List<JobEmployee> InvoiceEmployeesGet(string jobNumber)
+
+        private int InvoiceGetNextNumber()
+        {
+            int invoiceNumber = this.Invoices.Max(x => x.InvoiceNumber);
+            invoiceNumber++;
+
+            return invoiceNumber;
+        }
+
+        private List<JobEmployee> JobEmployeesGet(string jobNumber)
         {
             var records = this.JobEmployees
                         .Where(x => x.JobNo.Equals(jobNumber))
@@ -122,7 +132,7 @@ namespace BeechTree.DAL
             return records;
         }
 
-        public List<JobEquipment> InvoiceEquipmentsGet(string jobNumber)
+        private List<JobEquipment> JobEquipmentsGet(string jobNumber)
         {
             var records = this.JobEquipments
                         .Where(x => x.JobNo.Equals(jobNumber))
@@ -132,7 +142,7 @@ namespace BeechTree.DAL
             return records;
         }
 
-        public List<JobShift> InvoiceShiftsGet(string jobNumber)
+        private List<JobShift> JobShiftsGet(string jobNumber)
         {
             var records = this.JobShifts
                         .Where(x => x.JobNo.Equals(jobNumber))
@@ -142,7 +152,7 @@ namespace BeechTree.DAL
             return records;
         }
 
-        public decimal TotalEquipment(List<JobEquipment> items)
+        private decimal TotalEquipment(List<JobEquipment> items)
         {
             decimal d = 0;
             foreach (JobEquipment item in items)
@@ -152,7 +162,7 @@ namespace BeechTree.DAL
             return d;
         }
 
-        public decimal TotalLabor(List<JobEmployee> items)
+        private decimal TotalLabor(List<JobEmployee> items)
         {
             decimal d = 0;
             foreach (JobEmployee item in items)
