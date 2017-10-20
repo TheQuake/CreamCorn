@@ -24,25 +24,34 @@ namespace BeechTree
             {
                 case "employees":
                     count = dbPmData.JobEmployees.Where(x => x.JobNo.Equals(jobNumber)).Count();
-                    glyph = count > 0 ? "glyphicon-user" : "glyphicon-ban-circle";
+                    glyph = "glyphicon-user";
                     title = "Employees";
                     break;
                 case "equipments":
                     count = dbPmData.JobEquipments.Where(x => x.JobNo.Equals(jobNumber)).Count();
-                    glyph = count > 0 ? "glyphicon-wrench" : "glyphicon-ban-circle";
+                    glyph = "glyphicon-wrench";
                     title = "Equipment";
                     break;
                 case "invoice":
+                    count = 1;
                     glyph = "glyphicon-list-alt";
                     title = "Create invoice";
                     break;
                 case "shifts":
                     count = dbPmData.JobShifts.Where(x => x.JobNo.Equals(jobNumber)).Count();
-                    glyph = count > 0 ? "glyphicon-align-justify" : "glyphicon-ban-circle";
+                    glyph = "glyphicon-align-justify";
                     title = "Job Shifts";
                     break;
             }
-            string s = string.Format("<a data-modal='' href='/job/{0}/{1}' id='{1}' title='{2}'><span class='glyphicon {3}'></span></a>  ", type, jobNumber, title, glyph);
+            string s = string.Empty;
+            if (count > 0)
+            {
+                s = string.Format("<a data-modal='' href='/job/{0}/{1}' id='{1}' title='{2}'><span class='glyphicon {3}'></span></a>  ", type, jobNumber, title, glyph);
+            }
+            else
+            {
+                s = string.Format("<span class='glyphicon {0}'></span></a>  ", glyph);
+            }
 
 
             return MvcHtmlString.Create(s);
