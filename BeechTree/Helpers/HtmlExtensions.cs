@@ -1,4 +1,5 @@
 ﻿using BeechTree.Controllers;
+using BeechTree.DAL;
 using BeechTree.Models;
 using System;
 using System.Collections.Generic;
@@ -13,23 +14,35 @@ namespace BeechTree
 
         public static MvcHtmlString IconFor(this HtmlHelper helper, string jobNumber, string type)
         {
+            DbContext_PmData dbPmData = new DbContext_PmData();
+            int count = 0;
+
+            string title = string.Empty;
             string glyph = string.Empty;
+
             switch (type.ToLower())
             {
                 case "employees":
-                    glyph = "glyphicon-user";
+                    count = dbPmData.JobEmployees.Where(x => x.JobNo.Equals(jobNumber)).Count();
+                    glyph = count > 0 ? "glyphicon-user" : "glyphicon-ban-circle";
+                    title = "Employees";
                     break;
                 case "equipments":
-                    glyph = "glyphicon-wrench";
+                    count = dbPmData.JobEquipments.Where(x => x.JobNo.Equals(jobNumber)).Count();
+                    glyph = count > 0 ? "glyphicon-wrench" : "glyphicon-ban-circle";
+                    title = "Equipment";
                     break;
                 case "invoice":
                     glyph = "glyphicon-list-alt";
+                    title = "Create invoice";
                     break;
                 case "shifts":
-                    glyph = "glyphicon-align-justify";
+                    count = dbPmData.JobShifts.Where(x => x.JobNo.Equals(jobNumber)).Count();
+                    glyph = count > 0 ? "glyphicon-align-justify" : "glyphicon-ban-circle";
+                    title = "Job Shifts";
                     break;
             }
-            string s = string.Format("<a data-modal='' href='/job/{0}/{1}' id='{1}' title='{0}'><span class='glyphicon {2}'></span></a>  ", type, jobNumber, glyph);
+            string s = string.Format("<a data-modal='' href='/job/{0}/{1}' id='{1}' title='{2}'><span class='glyphicon {3}'></span></a>  ", type, jobNumber, title, glyph);
 
 
             return MvcHtmlString.Create(s);
