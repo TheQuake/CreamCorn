@@ -51,10 +51,15 @@
               grid.Column("JobNo", "Job#", style:"grid jobno"),
               grid.Column(header: "Action", canSort: false, style: "action",
                 format: @<text>
-                @Html.Raw("<a data-modal='' href='/job/shifts/" + item.JobNo + "' id='" + item.JobNo + "' title='Shifts'> <span class='glyphicon glyphicon-align-justify'> </span> </a>")
+            @Html.IconFor((string)item.JobNo, "shifts")
+            @Html.IconFor((string)item.JobNo, "employees")
+            @Html.IconFor((string)item.JobNo, "equipments")
+            @Html.IconFor((string)item.JobNo, "invoice")
+                @*@Html.Raw("<a data-modal='' href='/job/shifts/" + item.JobNo + "' id='" + item.JobNo + "' title='Shifts'> <span class='glyphicon glyphicon-align-justify'> </span> </a>")
                 @Html.Raw("<a data-modal='' href='/job/employees/" + item.JobNo + "' id='" + item.JobNo + "' title='Employees'> <span class='glyphicon glyphicon-user'> </span> </a>")
+                @Html.IconFor((string)item.JobNo, "employee")
                 @Html.Raw("<a data-modal='' href='/job/equipments/" + item.JobNo + "' id='" + item.JobNo + "' title='Equipment'> <span class='glyphicon glyphicon-wrench'> </span> </a>")
-                @Html.Raw("<a href='/job/invoice/" + item.JobNo + "' title='Invoice'> <span class='glyphicon glyphicon-list-alt'> </span> </a>")
+                @Html.Raw("<a href='/job/invoice/" + item.JobNo + "' title='Invoice'> <span class='glyphicon glyphicon-list-alt'> </span> </a>")*@
                 </text>)
 
             ));
