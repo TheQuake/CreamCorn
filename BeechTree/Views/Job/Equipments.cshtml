@@ -29,7 +29,7 @@
                    grid.Column("JobNo", "Job#", style: "grid jobno"),
                    grid.Column("ShiftNo", "Shift#", style: "grid shiftno"),
                    grid.Column("ShiftDate", "Date", style: "grid date"),
-                   grid.Column("Qty", style: "grid date"),
+                   grid.Column("UnitQty_Actual", style: "grid date"),
                    grid.Column("Item", style: "grid date")
                  ));
             }
@@ -53,5 +53,3 @@
 <div class="modal-footer">
     <button class="btn btn-warning" data-dismiss="modal">Close</button>
 </div>
-
-@Scripts.Render("~/bundles/Datatables")
