@@ -17,6 +17,7 @@ namespace BeechTree
             DbContext_PmData dbPmData = new DbContext_PmData();
             int count = 0;
 
+            string empty = string.Empty;
             string title = string.Empty;
             string glyph = string.Empty;
 
@@ -25,11 +26,13 @@ namespace BeechTree
                 case "employees":
                     count = dbPmData.JobEmployees.Where(x => x.JobNo.Equals(jobNumber)).Count();
                     glyph = "glyphicon-user";
+                    empty = "There are no employees entered for this job";
                     title = "Employees";
                     break;
                 case "equipments":
                     count = dbPmData.JobEquipments.Where(x => x.JobNo.Equals(jobNumber)).Count();
                     glyph = "glyphicon-wrench";
+                    empty = "There is no equipment entered for this job";
                     title = "Equipment";
                     break;
                 case "invoice":
@@ -39,8 +42,9 @@ namespace BeechTree
                     break;
                 case "shifts":
                     count = dbPmData.JobShifts.Where(x => x.JobNo.Equals(jobNumber)).Count();
+                    empty = "There are no shifts entered for this job";
                     glyph = "glyphicon-align-justify";
-                    title = "Job Shifts";
+                    title = "Shifts";
                     break;
             }
             string s = string.Empty;
@@ -50,7 +54,7 @@ namespace BeechTree
             }
             else
             {
-                s = string.Format("<span class='glyphicon {0}'></span></a>  ", glyph);
+                s = string.Format("<span class='glyphicon {0}' title='{1}'></span></a>  ", glyph, empty);
             }
 
 
