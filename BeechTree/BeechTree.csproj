@@ -484,6 +484,7 @@
     <Content Include="Templates\Invoice.docx" />
     <Content Include="Views\Unit\Index.cshtml" />
     <Content Include="Views\Equipment\Index.cshtml" />
+    <Content Include="Views\Job\Add.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

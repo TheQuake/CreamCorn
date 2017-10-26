@@ -25,6 +25,10 @@ namespace BeechTree.Models
         [Display(Name = "Description")]
         public string Descrip { get; set; }
 
+        [Required]
+        [Display(Name = "Job Date")]
+        public DateTime StartDate { get; set; }
+
     }
 
     [Table("PmJobEmploy")]

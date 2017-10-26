@@ -45,6 +45,13 @@ namespace BeechTree.Controllers
 
         }
 
+        public ActionResult Add()
+        {
+            Job j = new Job();
+            return PartialView();
+        }
+
+
         public ActionResult Invoice(string id)
         {
             // id = jobNumber
