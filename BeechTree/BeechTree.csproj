@@ -163,6 +163,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -175,6 +176,7 @@
     </Compile>
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Helpers\PdfHelper.cs" />
+    <Compile Include="Models\Site.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Equipment.cs" />
@@ -487,6 +489,7 @@
     <Content Include="Views\Equipment\Index.cshtml" />
     <Content Include="Views\Job\Add.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Site\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

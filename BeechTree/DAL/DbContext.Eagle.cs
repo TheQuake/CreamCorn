@@ -17,6 +17,7 @@ namespace BeechTree.DAL
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<Site> Sites { get; set; }
 
         public Customer CustomerGet(string customerNumber)
         {

@@ -3,7 +3,7 @@
     ViewBag.Title = "Equipment List";
 }
 
-<h1><span class="glyphicon glyphicon-wrench"></span> Equipment List</h1>
+<h1><span class="glyphicon glyphicon-wrench"></span> @ViewBag.Title</h1>
 <div class="well">
     @using (Html.BeginForm("index", null, FormMethod.Get))
     {

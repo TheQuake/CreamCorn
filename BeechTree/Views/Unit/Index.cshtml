@@ -3,7 +3,7 @@
     ViewBag.Title = "Unit List";
 }
 
-<h1><span class="glyphicon glyphicon-equalizer"></span> Unit List</h1>
+<h1><span class="glyphicon glyphicon-equalizer"></span> @ViewBag.Title</h1>
 <div class="well">
     @using (Html.BeginForm("index", null, FormMethod.Get))
     {
