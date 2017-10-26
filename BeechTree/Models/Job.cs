@@ -117,5 +117,19 @@ namespace BeechTree.Models
 
     }
 
+    [Table("PmUnit")]
+    public class Unit
+    {
+        // need actual job master table here
+
+        [Column("Unit")]
+        [Key]
+        public string Name { get; set; }
+
+        [Required]
+        [Column("Desc")]
+        public string Description { get; set; }
+
+    }
 
 }
