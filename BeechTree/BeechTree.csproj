@@ -164,6 +164,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="DAL\DbContext.Eagle.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\PagedList.cs" />
@@ -481,6 +483,7 @@
     <Content Include="Views\Job\Invoice.cshtml" />
     <Content Include="Templates\Invoice.docx" />
     <Content Include="Views\Unit\Index.cshtml" />
+    <Content Include="Views\Equipment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

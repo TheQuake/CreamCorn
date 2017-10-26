@@ -18,7 +18,8 @@ namespace BeechTree.DAL
             Database.SetInitializer<DbContext_PmData>
                 (null);
         }
-        
+
+        public DbSet<Equipment> Equipments { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<JobEmployee> JobEmployees { get; set; }
         public DbSet<JobEquipment> JobEquipments { get; set; }

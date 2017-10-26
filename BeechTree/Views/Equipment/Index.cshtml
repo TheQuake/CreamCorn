@@ -1,9 +1,9 @@
-﻿@model BeechTree.Models.PagedList<BeechTree.Models.Unit>
+﻿@model BeechTree.Models.PagedList<BeechTree.Models.Equipment>
 @{
-    ViewBag.Title = "Unit List";
+    ViewBag.Title = "Equipment List";
 }
 
-<h1><span class="glyphicon glyphicon-equalizer"></span> Unit List</h1>
+<h1><span class="glyphicon glyphicon-wrench"></span> Equipment List</h1>
 <div class="well">
     @using (Html.BeginForm("index", null, FormMethod.Get))
     {
@@ -16,7 +16,7 @@
                            value="@ViewBag.filter"
                            class="form-control"
                            style="display: inline"
-                           placeholder="Search by unit" />
+                           placeholder="Search by item" />
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">Go</button>
                     </span>
@@ -25,7 +25,7 @@
             </div>
             <div class="col-sm-5"></div>
             <div class="pull-right col-lg-1">
-                @*<a class="btn btn-success" data-modal="" href="/Unit/Create" id="btnCreate">
+                @*<a class="btn btn-success" data-modal="" href="/Equipment/Create" id="btnCreate">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>*@
             </div>
@@ -47,8 +47,11 @@
             tableStyle: "table table-bordered table-hover",
             mode: WebGridPagerModes.All,
             columns: grid.Columns(
-              grid.Column("Name", style: "grid id"),
-              grid.Column("Description", "Description", style: "grid description")
+              grid.Column("Id", style: "grid id"),
+              grid.Column("Customer"),
+              grid.Column("Item"),
+              grid.Column("Unit"),
+              grid.Column("Price")
             ));
             }
 
