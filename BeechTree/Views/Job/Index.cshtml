@@ -49,7 +49,9 @@
             columns: grid.Columns(
               grid.Column("Id", style: "grid id"),
               grid.Column("JobNo", "Job#", style: "grid jobno"),
-              grid.Column(header: "Action", canSort: false, style: "action",
+              grid.Column("CustNo", "Cust#", style: "grid jobno"),
+              grid.Column("Descrip", "Description", style: "grid description"),
+              grid.Column(header: "Action", canSort: false, style: "grid action",
                 format: @<text>
                 @Html.IconFor((string)item.JobNo, "shifts")
                 @Html.IconFor((string)item.JobNo, "employees")

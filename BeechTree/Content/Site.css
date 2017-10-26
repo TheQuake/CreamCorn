@@ -28,4 +28,6 @@ textarea {
 .grid.id {width:20px;}
 .grid.jobno {width:100px;}
 .grid.shiftno {width:10px;}
+.grid.description {width:400px;}
+.grid.action {width:100px;}
 /* Grid styles */

@@ -21,6 +21,10 @@ namespace BeechTree.Models
         [Display(Name = "Customer#")]
         public string CustNo { get; set; }
 
+        [Required]
+        [Display(Name = "Description")]
+        public string Descrip { get; set; }
+
     }
 
     [Table("PmJobEmploy")]
