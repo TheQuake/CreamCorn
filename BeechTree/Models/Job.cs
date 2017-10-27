@@ -7,8 +7,6 @@ namespace BeechTree.Models
     [Table("JcJobs01")]
     public class Job
     {
-        // need actual job master table here
-
         [Display(Name = "Id")]
         [Key]
         public int Id { get; set; }
@@ -27,6 +25,7 @@ namespace BeechTree.Models
 
         [Required]
         [Display(Name = "Job Date")]
+        [DisplayFormat(DataFormatString = "{0:mm/dd/yyyy}")]
         public DateTime StartDate { get; set; }
 
     }
@@ -135,5 +134,16 @@ namespace BeechTree.Models
         public string Description { get; set; }
 
     }
+
+
+    // ViewModel
+    [NotMapped]
+    public class JobAdd: Job
+    {
+        public string Site { get; set; }
+        public string ServiceCode { get; set; }
+
+    }
+
 
 }

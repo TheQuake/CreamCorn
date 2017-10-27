@@ -1,4 +1,5 @@
-﻿@model BeechTree.Models.Job 
+﻿@using BeechTree.Controllers
+@model BeechTree.Models.JobAdd
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -18,8 +19,10 @@
 
                 <div class="form-group">
                     @Html.LabelFor(m => m.StartDate, new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control", @autofocus = "autofocus", placeholder = "Job Date" })
+                    <div class="col-lg-3">
+                        @Html.TextBoxFor(m => m.StartDate, Model.StartDate.ToShortDateString(), new { @class = "form-control", @autofocus = "autofocus", placeholder = "Job Date" })
+                    </div>
+                    <div class="col-lg-9">
                     </div>
                 </div>
 
@@ -27,6 +30,20 @@
                     @Html.LabelFor(m => m.Descrip, new { @class = "col-lg-2 control-label" })
                     <div class="col-lg-10">
                         @Html.TextBoxFor(m => m.Descrip, new { @class = "form-control", placeholder = "Description" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Site, new { @class = "col-lg-2 control-label" })
+                    <div class="col-lg-10">
+                        @Html.DropDownListFor(m => m.Site, JobController.SitesGet(), new { @class = "form-control", placeholder = "Site" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ServiceCode, new { @class = "col-lg-2 control-label" })
+                    <div class="col-lg-10">
+                        @Html.DropDownListFor(m => m.ServiceCode, JobController.SitesGet(), new { @class = "form-control", placeholder = "Service Code" })
                     </div>
                 </div>
 

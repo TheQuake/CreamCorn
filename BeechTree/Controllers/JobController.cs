@@ -47,8 +47,9 @@ namespace BeechTree.Controllers
 
         public ActionResult Add()
         {
-            Job j = new Job();
-            return PartialView();
+            JobAdd j = new JobAdd();
+            j.StartDate = DateTime.Today;
+            return PartialView(j);
         }
 
 
@@ -223,6 +224,24 @@ namespace BeechTree.Controllers
 
         }
 
+        public static IEnumerable<SelectListItem> SitesGet()
+        {
+            var db = new DbContext_Eagle();
+            var records = db.Sites.ToList();
+
+            IList<SelectListItem> list = new List<SelectListItem>();
+            foreach (Site i in records)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = i.Name;
+                item.Value = i.Id.ToString();
+                list.Add(item);
+            }
+            List<SelectListItem> sortedItems = new List<SelectListItem>(list.OrderBy(i => i.Text));
+            sortedItems.Insert(0, new SelectListItem { Text = "Please select a site ...", Value = "" });
+
+            return sortedItems;
+        }
 
         private Table LineItemsTable(DocX doc, List<InvoiceLineItem> items)
         {

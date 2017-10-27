@@ -23,6 +23,10 @@ textarea {
     max-width: 280px;
 }
 
+/* Form styles */
+.form.date {width:120px;}
+/* Form styles */
+
 /* Grid styles */
 .grid.date {width: 20px;}
 .grid.id {width:20px;}
