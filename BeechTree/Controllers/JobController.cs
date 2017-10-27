@@ -52,113 +52,6 @@ namespace BeechTree.Controllers
             return PartialView(j);
         }
 
-
-        public ActionResult Invoice(string id)
-        {
-            // id = jobNumber
-
-            // get invoice/job info
-            InvoiceViewModel i = dbPmData.InvoiceCreate(id);
-            Job j = dbEagle.JobGet(id);
-
-            // get customer
-            Customer c = dbEagle.CustomerGet(j.CustNo);
-
-
-            string fileName = string.Format("Invoice_{0}.docx", i.JobNumber);
-            string template = Server.MapPath("~/Templates/Invoice.docx");
-            using (DocX doc = DocX.Load(template))
-            {
-
-                string value = string.Empty;
-                string token = string.Empty;
-
-                PropertyInfo[] pi = i.GetType().GetProperties();
-                foreach (PropertyInfo p in pi)
-                {
-                    switch (p.Name.ToLower())
-                    {
-                        case "billto":
-                            PropertyInfo[] pb = i.BillTo.GetType().GetProperties();
-                            foreach (PropertyInfo pib in pb)
-                            {
-                                token = string.Format("{{{0}.{1}}}", p.Name, pib.Name);
-                                value = string.Format("{0}", pib.GetValue(i.BillTo));
-                                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
-                            }
-                            break;
-                        case "eagleaddress":
-                            PropertyInfo[] pe = i.EagleAddress.GetType().GetProperties();
-                            foreach (PropertyInfo pie in pe)
-                            {
-                                token = string.Format("{{{0}.{1}}}", p.Name, pie.Name);
-                                value = string.Format("{0}", pie.GetValue(i.EagleAddress));
-                                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
-                            }
-                            break;
-                        case "lineitems":
-                            Table t = LineItemsTable(doc, i.LineItems);
-                            Table placeholderTable = doc.Tables[0];
-                            placeholderTable.InsertTableAfterSelf(t);
-                            placeholderTable.Remove();
-                            break;
-                        case "shipto":
-                            PropertyInfo[] ps = i.ShipTo.GetType().GetProperties();
-                            foreach (PropertyInfo pis in ps)
-                            {
-                                token = string.Format("{{{0}.{1}}}", p.Name, pis.Name);
-                                value = string.Format("{0}", pis.GetValue(i.ShipTo));
-                                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
-                            }
-                            break;
-                        case "remitto":
-                            PropertyInfo[] pr = i.RemitTo.GetType().GetProperties();
-                            foreach (PropertyInfo pir in pr)
-                            {
-                                token = string.Format("{{{0}.{1}}}", p.Name, pir.Name);
-                                value = string.Format("{0}", pir.GetValue(i.RemitTo));
-                                doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
-                            }
-                            break;
-                        case "date":
-                            token = string.Format("{{{0}}}", p.Name);
-                            value = string.Format("{0}", p.GetValue(i));
-                            DateTime dt;
-                            DateTime.TryParse(value, out dt);
-                            value = dt.ToShortDateString();
-                            doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
-                            break;
-                        case "terms":
-                            token = string.Format("{{{0}}}", p.Name);
-                            value = string.Format("{0}", c.TermsCode);
-                            doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
-                            break;
-                        case "total":
-                            token = string.Format("{{{0}}}", p.Name);
-                            value = string.Format("{0:C}", i.Total);
-                            doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
-                            break;
-                        default:
-                            token = string.Format("{{{0}}}", p.Name);
-                            value = string.Format("{0}", p.GetValue(i));
-                            doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
-                            break;
-                    }
-
-
-                }
-
-                //doc.SaveAs(path_documents);
-
-                return WordDocument(doc, template, fileName);
-
-            }
-
-            // only return pdf if DocX fails.
-            return Pdf("invoice.pdf", "Invoice", i, true);
-        }
-
-
         public ActionResult Employees(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
         {
             var records = new PagedList<JobEmployee>
@@ -203,7 +96,112 @@ namespace BeechTree.Controllers
 
         }
 
-        public ActionResult Shifts(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
+		public ActionResult Invoice(string id)
+		{
+			// id = jobNumber
+
+			// get invoice/job info
+			InvoiceViewModel i = dbPmData.InvoiceCreate(id);
+			Job j = dbEagle.JobGet(id);
+
+			// get customer
+			Customer c = dbEagle.CustomerGet(j.CustNo);
+
+
+			string fileName = string.Format("Invoice_{0}.docx", i.JobNumber);
+			string template = Server.MapPath("~/Templates/Invoice.docx");
+			using (DocX doc = DocX.Load(template))
+			{
+
+				string value = string.Empty;
+				string token = string.Empty;
+
+				PropertyInfo[] pi = i.GetType().GetProperties();
+				foreach (PropertyInfo p in pi)
+				{
+					switch (p.Name.ToLower())
+					{
+						case "billto":
+							PropertyInfo[] pb = i.BillTo.GetType().GetProperties();
+							foreach (PropertyInfo pib in pb)
+							{
+								token = string.Format("{{{0}.{1}}}", p.Name, pib.Name);
+								value = string.Format("{0}", pib.GetValue(i.BillTo));
+								doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+							}
+							break;
+						case "eagleaddress":
+							PropertyInfo[] pe = i.EagleAddress.GetType().GetProperties();
+							foreach (PropertyInfo pie in pe)
+							{
+								token = string.Format("{{{0}.{1}}}", p.Name, pie.Name);
+								value = string.Format("{0}", pie.GetValue(i.EagleAddress));
+								doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+							}
+							break;
+						case "lineitems":
+							Table t = LineItemsTable(doc, i.LineItems);
+							Table placeholderTable = doc.Tables[0];
+							placeholderTable.InsertTableAfterSelf(t);
+							placeholderTable.Remove();
+							break;
+						case "shipto":
+							PropertyInfo[] ps = i.ShipTo.GetType().GetProperties();
+							foreach (PropertyInfo pis in ps)
+							{
+								token = string.Format("{{{0}.{1}}}", p.Name, pis.Name);
+								value = string.Format("{0}", pis.GetValue(i.ShipTo));
+								doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+							}
+							break;
+						case "remitto":
+							PropertyInfo[] pr = i.RemitTo.GetType().GetProperties();
+							foreach (PropertyInfo pir in pr)
+							{
+								token = string.Format("{{{0}.{1}}}", p.Name, pir.Name);
+								value = string.Format("{0}", pir.GetValue(i.RemitTo));
+								doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+							}
+							break;
+						case "date":
+							token = string.Format("{{{0}}}", p.Name);
+							value = string.Format("{0}", p.GetValue(i));
+							DateTime dt;
+							DateTime.TryParse(value, out dt);
+							value = dt.ToShortDateString();
+							doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+							break;
+						case "terms":
+							token = string.Format("{{{0}}}", p.Name);
+							value = string.Format("{0}", c.TermsCode);
+							doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+							break;
+						case "total":
+							token = string.Format("{{{0}}}", p.Name);
+							value = string.Format("{0:C}", i.Total);
+							doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+							break;
+						default:
+							token = string.Format("{{{0}}}", p.Name);
+							value = string.Format("{0}", p.GetValue(i));
+							doc.ReplaceText(token, value, false, RegexOptions.IgnoreCase);
+							break;
+					}
+
+
+				}
+
+				//doc.SaveAs(path_documents);
+
+				return WordDocument(doc, template, fileName);
+
+			}
+
+			// only return pdf if DocX fails.
+			return Pdf("invoice.pdf", "Invoice", i, true);
+		}
+
+		public ActionResult Shifts(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
         {
             var records = new PagedList<JobShift>();
             records.Content = dbPmData.JobShifts
@@ -224,26 +222,47 @@ namespace BeechTree.Controllers
 
         }
 
-        public static IEnumerable<SelectListItem> SitesGet()
+
+		public static IEnumerable<SelectListItem> ServiceCodesGet()
         {
             var db = new DbContext_Eagle();
-            var records = db.Sites.ToList();
+            var records = db.ServiceCodes.ToList();
 
             IList<SelectListItem> list = new List<SelectListItem>();
-            foreach (Site i in records)
+            foreach (ServiceCode i in records)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = i.Name;
+                item.Text = i.Value;
                 item.Value = i.Id.ToString();
                 list.Add(item);
             }
             List<SelectListItem> sortedItems = new List<SelectListItem>(list.OrderBy(i => i.Text));
-            sortedItems.Insert(0, new SelectListItem { Text = "Please select a site ...", Value = "" });
+            sortedItems.Insert(0, new SelectListItem { Text = "Please select a service code ...", Value = "" });
 
             return sortedItems;
         }
 
-        private Table LineItemsTable(DocX doc, List<InvoiceLineItem> items)
+		public static IEnumerable<SelectListItem> SitesGet()
+		{
+			var db = new DbContext_Eagle();
+			var records = db.Sites.ToList();
+
+			IList<SelectListItem> list = new List<SelectListItem>();
+			foreach (Site i in records)
+			{
+				SelectListItem item = new SelectListItem();
+				item.Text = i.Name;
+				item.Value = i.Id.ToString();
+				list.Add(item);
+			}
+			List<SelectListItem> sortedItems = new List<SelectListItem>(list.OrderBy(i => i.Text));
+			sortedItems.Insert(0, new SelectListItem { Text = "Please select a site ...", Value = "" });
+
+			return sortedItems;
+		}
+
+
+		private Table LineItemsTable(DocX doc, List<InvoiceLineItem> items)
         {
             // rows + heaader row
             Table t = doc.AddTable(items.Count + 1, 4);
@@ -271,7 +290,6 @@ namespace BeechTree.Controllers
             return t;
 
         }
-
 
         protected override void Dispose(bool disposing)
         {

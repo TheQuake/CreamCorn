@@ -16,10 +16,14 @@ namespace BeechTree.DAL
                 (null);
         }
 
+        #region DbSets
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<ServiceCode> ServiceCodes { get; set; }
         public DbSet<Site> Sites { get; set; }
+        #endregion
 
+        #region CRUDs
         public Customer CustomerGet(string customerNumber)
         {
             Customer c = this.Customers.Where(x => x.CustId.Equals(customerNumber)).FirstOrDefault();
@@ -53,6 +57,8 @@ namespace BeechTree.DAL
 
             return records;
         }
+
+        #endregion
 
     }
 }

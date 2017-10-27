@@ -43,7 +43,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.ServiceCode, new { @class = "col-lg-2 control-label" })
                     <div class="col-lg-10">
-                        @Html.DropDownListFor(m => m.ServiceCode, JobController.SitesGet(), new { @class = "form-control", placeholder = "Service Code" })
+                        @Html.DropDownListFor(m => m.ServiceCode, JobController.ServiceCodesGet(), new { @class = "form-control", placeholder = "Service Code" })
                     </div>
                 </div>
 

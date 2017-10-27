@@ -163,6 +163,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ServiceCodeController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
@@ -176,6 +177,7 @@
     </Compile>
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Helpers\PdfHelper.cs" />
+    <Compile Include="Models\ServiceCode.cs" />
     <Compile Include="Models\Site.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Address.cs" />
@@ -490,6 +492,7 @@
     <Content Include="Views\Job\Add.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
+    <Content Include="Views\ServiceCode\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
