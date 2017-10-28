@@ -31,5 +31,11 @@ namespace BeechTree.Models
 		[Column("lBranch_id")]
 		public int BranchId { get; set; }
 
+		[Display(Name = "Branch Id")]
+		[Column("szSalesRep_tr")]
+		public string SalesRepCode { get; set; }
+
+
+
 	}
 }

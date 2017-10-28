@@ -66,11 +66,16 @@ namespace BeechTree.Controllers
 			var records = dbEagle.Sites
 				.Join(dbEagle.Branches, s => s.BranchId, b => b.Id, (s, b) => new { s, b })
 				.Join(dbEagle.Customers, ss => ss.s.CustomerId, c => c.CustId, (ss, c) => new { ss, c })
-				.Where(x => x.ss.s.Id.Equals(j.Site));
+				.Where(x => x.ss.s.Id.Equals(j.Site))
+				.ToList();
 
 			// create job number
 			string maxId = dbEagle.Searches.Max(m => m.SearchKey);
 			maxId = maxId.Substring(0, 5);
+			int maxID = 0;
+			int.TryParse(maxId, out maxID);
+			maxID++;
+			string newJobNmber = string.Format("{0:D6}-{1}-{2}", maxID, records[0].ss.s.SalesRepCode, records[0].ss.b.GlSegment);
 
 
 			// insert job into db
