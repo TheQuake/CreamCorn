@@ -26,7 +26,7 @@ namespace BeechTree.Controllers
             records.Content = dbEagle.Jobs
                         .Where(x => filter == null ||
                                 (x.JobNo.Contains(filter))
-                                   || x.JobNo.Contains(filter)
+                                   || x.Descrip.Contains(filter)
                               )
                         .OrderBy(sort + " " + sortdir)
                         .Skip((page - 1) * pageSize)
