@@ -149,7 +149,6 @@ namespace BeechTree.Models
 
 
     // ViewModel
-    [NotMapped]
     public class JobAdd
     {
 		[DataType(DataType.Date)]
@@ -163,11 +162,42 @@ namespace BeechTree.Models
 		[Display(Name = "Description")]
 		public string Description { get; set; }
 		[Required]
-		public int Site { get; set; }
+		public int SiteId { get; set; }
+		public string SiteName { get; set; }
+
 		[Required]
 		public int ServiceCode { get; set; }
 
-    }
+		public string JobNumber { get; set; }
+
+		public int Id { get; set; }
+		public string JobName { get; set; }
+		public DateTime JobDate { get; set; }
+		public string CustomerCode { get; set; }
+
+		public int BranchId { get; set; }
+
+		public string BranchCode { get; set; }
+
+		public string SalesRepCode { get; set; }
+
+		public int DepartmentId { get; set; }
+
+		public string DistrictCode { get; set; }
+
+		public string TaxGroupCode { get; set; }
+		public int ZoneId { get; set; }
+
+		public int PriorityId { get; set; }
+
+		public string TermsCode { get; set; }
+		public string CurrencysCode { get; set; }
+
+		public int ConcurrencysId { get; set; }
+
+		public string message { get; set; }
+
+	}
 
 
 }

@@ -24,7 +24,7 @@ namespace BeechTree.Controllers
             ViewBag.filter = filter;
             records.Content = dbEagle.Sites
                         .Where(x => filter == null ||
-                                (x.CustomerId.Contains(filter))
+                                (x.CustomerCode.Contains(filter))
                                    || x.Name.Contains(filter)
                               )
                         .OrderBy(sort + " " + sortdir)
@@ -35,7 +35,7 @@ namespace BeechTree.Controllers
             // Count
             records.TotalRecords = dbEagle.Sites
                          .Where(x => filter == null ||
-                               (x.CustomerId.Contains(filter)) || x.Name.Contains(filter)).Count();
+                               (x.CustomerCode.Contains(filter)) || x.Name.Contains(filter)).Count();
 
             records.CurrentPage = page;
             records.PageSize = pageSize;

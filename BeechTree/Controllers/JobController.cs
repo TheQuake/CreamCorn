@@ -62,11 +62,10 @@ namespace BeechTree.Controllers
 			}
 
 			// get job info
-			// jobsite, branch & arcust
 			var records = dbEagle.Sites
 				.Join(dbEagle.Branches, s => s.BranchId, b => b.Id, (s, b) => new { s, b })
-				.Join(dbEagle.Customers, ss => ss.s.CustomerId, c => c.CustId, (ss, c) => new { ss, c })
-				.Where(x => x.ss.s.Id.Equals(j.Site))
+				.Join(dbEagle.Customers, ss => ss.s.CustomerCode, c => c.CustId, (ss, c) => new { ss, c })
+				.Where(x => x.ss.s.Id.Equals(j.SiteId))
 				.ToList();
 
 			// create job number
@@ -79,6 +78,29 @@ namespace BeechTree.Controllers
 
 
 			// insert job into db
+			j.BranchCode = records[0].ss.b.GlSegment;
+			j.BranchId = records[0].ss.b.Id;
+			j.ConcurrencysId = records[0].ss.s.ConcurrencysId;
+			j.CurrencysCode = records[0].ss.s.CurrencysCode;
+			j.CustomerCode = records[0].ss.s.CustomerCode;
+			j.DepartmentId = records[0].ss.s.DepartmentId;
+			j.DistrictCode = records[0].ss.s.DistrictCode;
+			j.JobDate = j.StartDate;
+			j.JobName = j.Description;
+			j.JobNumber = newJobNmber;
+			j.PriorityId = records[0].ss.s.PriorityId;
+			j.SalesRepCode = records[0].ss.s.SalesRepCode;
+			j.SiteId = records[0].ss.s.Id;
+			j.SiteName = records[0].ss.s.Name;
+			j.TaxGroupCode = records[0].ss.s.TaxGroupCode;
+			j.TermsCode = records[0].ss.s.TermsCode;
+			j.ZoneId = records[0].ss.s.ZoneId;
+			dbEagle.JobSave(j);
+			if (!string.IsNullOrEmpty(j.message ))
+			{
+				ModelState.AddModelError("", string.Format("There was a problem adding the job. Details: {0}", j.message));
+				return PartialView(j);
+			}
 
 			return Json(new { success = true });
 		}
