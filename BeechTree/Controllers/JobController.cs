@@ -52,7 +52,33 @@ namespace BeechTree.Controllers
             return PartialView(j);
         }
 
-        public ActionResult Employees(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Add(JobAdd j)
+		{
+			if (!ModelState.IsValid)
+			{
+				return PartialView(j);
+			}
+
+			// get job info
+			// jobsite, branch & arcust
+			var records = dbEagle.Sites
+				.Join(dbEagle.Branches, s => s.BranchId, b => b.Id, (s, b) => new { s, b })
+				.Join(dbEagle.Customers, ss => ss.s.CustomerId, c => c.CustId, (ss, c) => new { ss, c })
+				.Where(x => x.ss.s.Id.Equals(j.Site));
+
+			// create job number
+			string maxId = dbEagle.Searches.Max(m => m.SearchKey);
+			maxId = maxId.Substring(0, 5);
+
+
+			// insert job into db
+
+			return Json(new { success = true });
+		}
+
+		public ActionResult Employees(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
         {
             var records = new PagedList<JobEmployee>
             {

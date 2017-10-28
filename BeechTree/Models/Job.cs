@@ -11,19 +11,15 @@ namespace BeechTree.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [Display(Name = "Job#")]
         public string JobNo { get; set; }
 
-        [Required]
         [Display(Name = "Customer#")]
         public string CustNo { get; set; }
 
-        [Required]
         [Display(Name = "Description")]
         public string Descrip { get; set; }
 
-        [Required]
         [Display(Name = "Job Date")]
         [DisplayFormat(DataFormatString = "{0:mm/dd/yyyy}")]
         public DateTime StartDate { get; set; }
@@ -91,7 +87,23 @@ namespace BeechTree.Models
 
     }
 
-    [Table("PmJobShift")]
+	[Table("JobSearch")]
+	public class JobSearch
+	{
+
+		[Column("lJobSearch_id")]
+		[Key]
+		public int Id { get; set; }
+
+		[Column("szSearch_key")]
+		public string SearchKey { get; set; }
+
+		[Column("szJobName_txt")]
+		public string Name { get; set; }
+
+	}
+
+	[Table("PmJobShift")]
     public class JobShift
     {
 
@@ -138,10 +150,22 @@ namespace BeechTree.Models
 
     // ViewModel
     [NotMapped]
-    public class JobAdd: Job
+    public class JobAdd
     {
-        public string Site { get; set; }
-        public string ServiceCode { get; set; }
+		[DataType(DataType.Date)]
+		[Display(Name = "Start Date")]
+		[DisplayFormat(DataFormatString = "{0:mm/dd/yyyy}")]
+		[Range(typeof(DateTime), "1/1/2010", "12/31/2030")]
+		[Required]
+		public DateTime StartDate { get; set; }
+
+		[Required]
+		[Display(Name = "Description")]
+		public string Description { get; set; }
+		[Required]
+		public int Site { get; set; }
+		[Required]
+		public int ServiceCode { get; set; }
 
     }
 

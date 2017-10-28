@@ -1,9 +1,9 @@
-﻿@model BeechTree.Models.PagedList<BeechTree.Models.Site>
+﻿@model BeechTree.Models.PagedList<BeechTree.Models.Branch>
 @{
-    ViewBag.Title = "Site List";
+    ViewBag.Title = "Branch List";
 }
 
-<h1><span class="glyphicon glyphicon-tree-conifer"></span> @ViewBag.Title</h1>
+<h1><span class="glyphicon glyphicon-collapse-up"></span> @ViewBag.Title</h1>
 <div class="well">
     @using (Html.BeginForm("index", null, FormMethod.Get))
     {
@@ -16,7 +16,7 @@
                            value="@ViewBag.filter"
                            class="form-control"
                            style="display: inline"
-                           placeholder="Search by name or customer id" />
+                           placeholder="Search by name" />
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">Go</button>
                     </span>
@@ -43,16 +43,14 @@
                 grid.Pager(WebGridPagerModes.All);
 
                 @grid.GetHtml(htmlAttributes: new { id = "datatable", ajaxUpdateContainerId = "grid" },   // id for ajaxUpdateContainerId parameter
-			fillEmptyRows: false,
-			tableStyle: "table table-bordered table-hover",
-			mode: WebGridPagerModes.All,
-			columns: grid.Columns(
-			  grid.Column("Id", "Site Id", style: "grid id"),
-			  grid.Column("Name", "Site Name", style: "grid description"),
-			  grid.Column("CustomerId", "Customer Id", style: "grid id"),
-			  grid.Column("BranchId", "Branch Id", style: "grid id")
-
-			));
+            fillEmptyRows: false,
+            tableStyle: "table table-bordered table-hover",
+            mode: WebGridPagerModes.All,
+            columns: grid.Columns(
+              grid.Column("Id", "Branch Id", style: "grid id"),
+              grid.Column("Name", "Branch Name", style: "grid description"),
+              grid.Column("GLSegment", "GL Segment", style: "grid id")
+            ));
             }
 
 

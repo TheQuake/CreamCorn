@@ -18,16 +18,18 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href='@Url.Action("Index", "Home")' class="navbar-brand">
-                    <span class="glyphicon glyphicon-grain"></span>
+                    <span class="glyphicon glyphicon-tree-deciduous"></span>
                     BeechTree
                 </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Branches", "Index", "Branch")</li>
                     <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
                     <li>@Html.ActionLink("Equipment", "Index", "Equipment")</li>
                     <li>@Html.ActionLink("Jobs", "Index", "Job")</li>
-                    <li>@Html.ActionLink("Sites", "Index", "Site")</li>
+                    <li>@Html.ActionLink("Service Codes", "Index", "ServiceCode")</li>
+					<li>@Html.ActionLink("Sites", "Index", "Site")</li>
                     <li>@Html.ActionLink("Units", "Index", "Unit")</li>
                 </ul>
             </div>

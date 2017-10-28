@@ -27,5 +27,9 @@ namespace BeechTree.Models
         [Column("szCustId_tr")]
         public string CustomerId { get; set; }
 
-    }
+		[Display(Name = "Branch Id")]
+		[Column("lBranch_id")]
+		public int BranchId { get; set; }
+
+	}
 }

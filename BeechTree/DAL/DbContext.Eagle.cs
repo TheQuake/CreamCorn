@@ -16,10 +16,12 @@ namespace BeechTree.DAL
                 (null);
         }
 
-        #region DbSets
-        public DbSet<Customer> Customers { get; set; }
+		#region DbSets
+		public DbSet<Branch> Branches { get; set; }
+		public DbSet<Customer> Customers { get; set; }
         public DbSet<Job> Jobs { get; set; }
-        public DbSet<ServiceCode> ServiceCodes { get; set; }
+		public DbSet<JobSearch> Searches { get; set; }
+		public DbSet<ServiceCode> ServiceCodes { get; set; }
         public DbSet<Site> Sites { get; set; }
         #endregion
 
