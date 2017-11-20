@@ -19,7 +19,8 @@ namespace BeechTree.Controllers
 
                 Response.Clear();
                 Response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}", fileName));
-                Response.ContentType = "application/msword";
+                //Response.ContentType = "application/msword";
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
                 ms.WriteTo(Response.OutputStream);
                 Response.End();
             }
