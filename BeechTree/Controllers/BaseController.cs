@@ -13,15 +13,18 @@ namespace BeechTree.Controllers
 
         protected ActionResult WordDocument(DocX doc, string template, string fileName)
         {
+			byte[] b = null;
             using (MemoryStream ms = new MemoryStream())
             {
                 doc.SaveAs(ms);
+				//b = ms.ToArray();
 
-                Response.Clear();
-                Response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}", fileName));
-                Response.ContentType = "application/msword";
+                //Response.Clear();
+                //Response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}", fileName));
+                //Response.ContentType = "application/msword";
                 ms.WriteTo(Response.OutputStream);
-                Response.End();
+				//Response.BinaryWrite(b);
+                //Response.End();
             }
 
             return null;

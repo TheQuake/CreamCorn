@@ -160,7 +160,7 @@ namespace BeechTree.Controllers
 
 
 			string fileName = string.Format("Invoice_{0}.docx", i.JobNumber);
-			string template = Server.MapPath("~/Templates/Invoice.docx");
+			string template = Server.MapPath("~/Templates/Invoice-new.docx");
 			using (DocX doc = DocX.Load(template))
 			{
 
@@ -191,6 +191,7 @@ namespace BeechTree.Controllers
 							}
 							break;
 						case "lineitems":
+							break;
 							Table t = LineItemsTable(doc, i.LineItems);
 							Table placeholderTable = doc.Tables[0];
 							placeholderTable.InsertTableAfterSelf(t);
