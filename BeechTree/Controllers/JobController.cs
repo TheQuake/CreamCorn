@@ -243,7 +243,7 @@ namespace BeechTree.Controllers
 
 				}
 
-				//doc.SaveAs(path_documents);
+				//doc.SaveAs("c:\\temp\\test.docx");
 
 				return WordDocument(doc, template, fileName);
 
