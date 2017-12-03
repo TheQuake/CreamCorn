@@ -1,17 +1,16 @@
-﻿//using Novacode;
-using System.IO;
-using System.Text.RegularExpressions;
+﻿using System.IO;
+using System.Text;
 using System.Web.Mvc;
 using Xceed.Words.NET;
 
 namespace BeechTree.Controllers
 {
-    public class BaseController : Controller
+	public class BaseController : Controller
     {
 
         // So far, just some DocX & PDF stuff ...
 
-        protected ActionResult WordDocument(DocX doc, string template, string fileName)
+        protected ActionResult WordDocument(DocX doc, string fileName)
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -19,8 +18,8 @@ namespace BeechTree.Controllers
 
                 Response.Clear();
                 Response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}", fileName));
-                //Response.ContentType = "application/msword";
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+				Response.ContentEncoding = Encoding.UTF8;
+				Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
                 ms.WriteTo(Response.OutputStream);
                 Response.End();
             }

@@ -160,7 +160,14 @@ namespace BeechTree.Controllers
 
 
 			string fileName = string.Format("Invoice_{0}.docx", i.JobNumber);
-			string template = Server.MapPath("~/Templates/Invoice-new.docx");
+			string template = Server.MapPath("~/Templates/Invoice.docx");
+
+			//using (DocX doc = DocX.Load(template))
+			//{
+			//	return WordDocument(doc, fileName);
+			//}
+
+
 			using (DocX doc = DocX.Load(template))
 			{
 
@@ -245,7 +252,7 @@ namespace BeechTree.Controllers
 
 				//doc.SaveAs("c:\\temp\\test.docx");
 
-				return WordDocument(doc, template, fileName);
+				return WordDocument(doc, fileName);
 
 			}
 
