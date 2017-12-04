@@ -16,6 +16,7 @@ namespace BeechTree
         {
             DbContext_PmData dbPmData = new DbContext_PmData();
             int count = 0;
+            bool isInvoice = false;
 
             string empty = string.Empty;
             string title = string.Empty;
@@ -37,6 +38,7 @@ namespace BeechTree
                     break;
                 case "invoice":
                     count = 1;
+                    isInvoice = true;
                     glyph = "glyphicon-list-alt";
                     title = "Create invoice";
                     break;
@@ -50,7 +52,14 @@ namespace BeechTree
             string s = string.Empty;
             if (count > 0)
             {
-                s = string.Format("<a data-modal='' href='/job/{0}/{1}' id='{1}' title='{2}'><span class='glyphicon {3}'></span></a>  ", type, jobNumber, title, glyph);
+                if (isInvoice)
+                {
+                    s = string.Format("<a href='/job/{0}/{1}' id='{1}' title='{2}'><span class='glyphicon {3}'></span></a>  ", type, jobNumber, title, glyph);
+                }
+                else
+                {
+                    s = string.Format("<a data-modal='' href='/job/{0}/{1}' id='{1}' title='{2}'><span class='glyphicon {3}'></span></a>  ", type, jobNumber, title, glyph);
+                }
             }
             else
             {

@@ -10,7 +10,7 @@ namespace BeechTree.Controllers
 
         // So far, just some DocX & PDF stuff ...
 
-        protected ActionResult WordDocument(DocX doc, string fileName)
+        protected FileResult WordDocument(DocX doc, string fileName)
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -18,8 +18,10 @@ namespace BeechTree.Controllers
 
                 Response.Clear();
                 Response.AddHeader("Content-Disposition", string.Format("attachment; filename={0}", fileName));
-				Response.ContentEncoding = Encoding.UTF8;
+				//Response.ContentEncoding = Encoding.UTF8;
 				Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                //ms.Position = 0;
+                //ms.CopyTo(Response.OutputStream);
                 ms.WriteTo(Response.OutputStream);
                 Response.End();
             }

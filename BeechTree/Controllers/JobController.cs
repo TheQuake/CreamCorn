@@ -147,7 +147,7 @@ namespace BeechTree.Controllers
 
         }
 
-		public ActionResult Invoice(string id)
+		public FileResult Invoice(string id)
 		{
 			// id = jobNumber
 
@@ -162,13 +162,7 @@ namespace BeechTree.Controllers
 			string fileName = string.Format("Invoice_{0}.docx", i.JobNumber);
 			string template = Server.MapPath("~/Templates/Invoice.docx");
 
-			//using (DocX doc = DocX.Load(template))
-			//{
-			//	return WordDocument(doc, fileName);
-			//}
-
-
-			using (DocX doc = DocX.Load(template))
+            using (DocX doc = DocX.Load(template))
 			{
 
 				string value = string.Empty;
@@ -198,7 +192,6 @@ namespace BeechTree.Controllers
 							}
 							break;
 						case "lineitems":
-							break;
 							Table t = LineItemsTable(doc, i.LineItems);
 							Table placeholderTable = doc.Tables[0];
 							placeholderTable.InsertTableAfterSelf(t);
@@ -257,7 +250,7 @@ namespace BeechTree.Controllers
 			}
 
 			// only return pdf if DocX fails.
-			return Pdf("invoice.pdf", "Invoice", i, true);
+			//return Pdf("invoice.pdf", "Invoice", i, true);
 		}
 
 		public ActionResult Shifts(string id, int page = 1, int pageSize = 5, string sort = "ShiftNo", string sortdir = "ASC")
