@@ -193,6 +193,7 @@ namespace BeechTree.Controllers
 							break;
 						case "lineitems":
 							Table t = LineItemsTable(doc, i.LineItems);
+
 							Table placeholderTable = doc.Tables[0];
 							placeholderTable.InsertTableAfterSelf(t);
 							placeholderTable.Remove();
