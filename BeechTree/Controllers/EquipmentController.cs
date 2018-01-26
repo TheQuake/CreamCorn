@@ -19,7 +19,7 @@ namespace BeechTree.Controllers
             records.Content = dbPmData.Equipments
                         .Where(x => filter == null ||
                                 (x.Item.Contains(filter))
-                                   || x.Item.Contains(filter)
+                                   || x.Customer.Contains(filter)
                               )
                         .OrderBy(sort + " " + sortdir)
                         .Skip((page - 1) * pageSize)
@@ -29,7 +29,7 @@ namespace BeechTree.Controllers
             // Count
             records.TotalRecords = dbPmData.Equipments
                          .Where(x => filter == null ||
-                               (x.Item.Contains(filter)) || x.Item.Contains(filter)).Count();
+                               (x.Item.Contains(filter)) || x.Customer.Contains(filter)).Count();
 
             records.CurrentPage = page;
             records.PageSize = pageSize;
