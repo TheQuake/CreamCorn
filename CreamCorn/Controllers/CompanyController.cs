@@ -85,9 +85,8 @@ namespace CreamCorn.Controllers
 				return PartialView(c);
 			}
 
-			db.Companies.Add(c);
+			db.Entry(c).State = EntityState.Modified;
 			db.SaveChanges();
-
 			return Json(new { success = true });
 		}
 
