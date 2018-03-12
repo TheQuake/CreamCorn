@@ -15,25 +15,32 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
 
-            <fieldset>
+		<fieldset>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Name, new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-3">
-                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @autofocus = "autofocus", placeholder = "Company Name" })
-                    </div>
-                    <div class="col-lg-9">
-                    </div>
-                </div>
+			<div class="form-group">
+				@Html.LabelFor(m => m.Name, new { @class = "col-lg-2 control-label" })
+				<div class="col-lg-3">
+					@Html.TextBoxFor(m => m.Name, new { @class = "form-control", @autofocus = "autofocus", placeholder = "Company Name" })
+				</div>
+				<div class="col-lg-9">
+				</div>
+			</div>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Phone Number" })
-                    </div>
-                </div>
+			<div class="form-group">
+				@Html.LabelFor(m => m.PhoneNumber, new { @class = "col-lg-2 control-label" })
+				<div class="col-lg-10">
+					@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Phone Number" })
+				</div>
+			</div>
 
-            </fieldset>
+			<div class="form-group">
+				@Html.LabelFor(m => m.CategoryId, new { @class = "col-lg-2 control-label" })
+				<div class="col-lg-10">
+					@Html.DropDownListFor(m => m.CategoryId, CompanyController.GetCategories(), new { @class = "form-control" })
+				</div>
+			</div>
+		
+		</fieldset>
 
 
             <div class="modal-footer">

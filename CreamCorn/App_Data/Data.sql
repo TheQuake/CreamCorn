@@ -25,7 +25,8 @@ GO
 CREATE TABLE [dbo].[Company] (
     [Id]          INT            IDENTITY (1, 1) NOT NULL,
     [Name]        NVARCHAR (MAX) NOT NULL,
-    [PhoneNumber] NVARCHAR (MAX) NOT NULL
+    [PhoneNumber] NVARCHAR (MAX) NOT NULL,
+	[CategoryId] INT NULL
 );
 SET ANSI_NULLS ON
 GO
@@ -53,19 +54,19 @@ insert into category select 'Information Technology'
 insert into category select 'Manufacturing'
 insert into category select 'Real Estate'
 
-insert into company select 'Redgate', '123456790'
-insert into company select 'Microsoft', '9876543210'
-insert into company select 'Berkshire Hathaway', '3125551212'
-insert into company select 'Apple', '2109637854'
-insert into company select 'Exxon Mobile', '9019875200'
-insert into company select 'McKesson', '6307541200'
-insert into company select 'United Health', '2017548500'
-insert into company select 'CVS Health', '5042584120'
-insert into company select 'General Motors', '6053259620'
-insert into company select 'AT&T', '7046395420'
-insert into company select 'Ford Motor', '9016307820'
-insert into company select 'AmerisourceBergen', '8005551200'
-insert into company select 'Amazon.com', '8009634500'
+insert into company select 'Redgate', '123456790', 2
+insert into company select 'Microsoft', '9876543210', 2
+insert into company select 'Berkshire Hathaway', '3125551212', 4
+insert into company select 'Apple', '2109637854', 2
+insert into company select 'Exxon Mobile', '9019875200', 3
+insert into company select 'McKesson', '6307541200', 1
+insert into company select 'United Health', '2017548500', 1
+insert into company select 'CVS Health', '5042584120', 1
+insert into company select 'General Motors', '6053259620', 3
+insert into company select 'AT&T', '7046395420', 2
+insert into company select 'Ford Motor', '9016307820', 3
+insert into company select 'AmerisourceBergen', '8005551200', 1
+insert into company select 'Amazon.com', '8009634500', 2
 
 insert into companycategories select 1,2
 insert into companycategories select 2,2

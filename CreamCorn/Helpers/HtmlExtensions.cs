@@ -51,66 +51,34 @@ namespace CreamCorn
             return MvcHtmlString.Create(s);
         }
 
-        public static MvcHtmlString DeleteIconFor(this HtmlHelper helper, int companyId, string type)
+        public static MvcHtmlString DeleteIconFor(this HtmlHelper helper, int id, string type)
         {
-			string s = "<a id='btnDelete' class='glyphicon glyphicon-trash' href='javascript:void(0);' style='text-decoration:none;padding-left:12px;' title='Delete' onClick='deleteDocument(companyId);'></a>";
-            return MvcHtmlString.Create(s);
-        }
-
-		public static MvcHtmlString EditIconFor(this HtmlHelper helper, int companyId, string type)
-		{
-			string s = string.Format("<span style=padding-left:10px;></span><a data-modal='' href='/company/edit/{0}' id='{0}' title='Edit'><span class='glyphicon glyphicon-edit'></span></a>  ", companyId);
-			return MvcHtmlString.Create(s);
-		}
-
-		public static MvcHtmlString ImageFor(this HtmlHelper helper, string contentType)
-		{
-			string s = "";
-			switch (contentType)
-			{
-				case "application/pdf":
-					s = string.Format("<img src=\"{0}\" width=\"24\" height=\"24\" />", "/Content/pdf.48.png");
-					break;
-				case "image/jpeg":
-					s = string.Format("<img src=\"{0}\" width=\"24\" height=\"24\" />", "/Content/image.48.png");
-					break;
-                case "text/plain":
-                    s = string.Format("<img src=\"{0}\" width=\"24\" height=\"24\" />", "/Content/notepad.48.png");
-                    break;
-            }
-            return MvcHtmlString.Create(s);
-
-		}
-
-		public static MvcHtmlString DocumentActive(this HtmlHelper helper, bool isActive)
-		{
 			string s = string.Empty;
-
-			if (isActive)
+			if (type == "companies")
 			{
-				s = "<span class=\"glyphicon glyphicon-ok\" />";
-			}
-
-			return MvcHtmlString.Create(s);
-		}
-
-		public static MvcHtmlString PhotoFor(this HtmlHelper helper, byte[] photo, string size)
-		{
-			string s = "";
-			if (photo == null || photo.Length == 0)
-			{
-				s = string.Format("<img src=\"/Content/no-photo.png\" width=\"{0}\" height=\"{0}\" />", size);
+				s = "<a id='btnDelete' class='glyphicon glyphicon-trash' href='javascript:void(0);' style='text-decoration:none;padding-left:12px;' title='Delete' onClick='deleteDocument(id);'></a>";
 			}
 			else
 			{
-				string imageBase64 = Convert.ToBase64String(photo);
-				string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
-				s = string.Format("<img src=\"{0}\" width=\"{1}\" height=\"{1}\" />", imageSrc, size);
+				s = "<a id='btnDelete' class='glyphicon glyphicon-trash' href='javascript:void(0);' style='text-decoration:none;padding-left:12px;' title='Delete' onClick='deleteDocument(id);'></a>";
+			}
+
+			return MvcHtmlString.Create(s);
+        }
+
+		public static MvcHtmlString EditIconFor(this HtmlHelper helper, int id, string type)
+		{
+			string s = string.Empty;
+			if (type == "companies")
+			{
+				s = string.Format("<span style=padding-left:10px;></span><a data-modal='' href='/company/edit/{0}' id='{0}' title='Edit'><span class='glyphicon glyphicon-edit'></span></a>  ", id);
+			}
+			else
+			{
+				s = string.Format("<span style=padding-left:10px;></span><a data-modal='' href='/contact/edit/{0}' id='{0}' title='Edit'><span class='glyphicon glyphicon-edit'></span></a>  ", id);
 			}
 			return MvcHtmlString.Create(s);
-
 		}
-
 
 	}
 }

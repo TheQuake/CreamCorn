@@ -10,7 +10,6 @@ namespace CreamCorn.Models
     {
         public Company()
         {
-            Categories = new List<Category>();
         }
 
         [Key]
@@ -24,7 +23,7 @@ namespace CreamCorn.Models
 		[Display(Name = "Phone Number")]
 		public string PhoneNumber { get; set; }
 
-        public virtual ICollection<Category> Categories { get; set; }
+        public int CategoryId { get; set; }
 
     }
 

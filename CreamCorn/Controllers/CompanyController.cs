@@ -72,6 +72,7 @@ namespace CreamCorn.Controllers
 				c.Id = record.Id;
 				c.Name = record.Name;
 				c.PhoneNumber = record.PhoneNumber;
+				c.CategoryId = record.CategoryId;
 			}
 			return PartialView(c);
 		}
@@ -155,8 +156,29 @@ namespace CreamCorn.Controllers
 
         }
 
+		public static IEnumerable<SelectListItem> GetCategories()
+		{
+			var dbc = new CompanyController();
+			var records = dbc.db.Categories
+						.OrderBy("name asc")
+						.ToList();
 
-        protected override void Dispose(bool disposing)
+			IList<SelectListItem> list = new List<SelectListItem>();
+			foreach (var i in records)
+			{
+				SelectListItem item = new SelectListItem();
+				item.Text = i.Name;
+				item.Value = i.Id.ToString();
+				list.Add(item);
+			}
+
+			list.Insert(0, new SelectListItem { Text = "Please select a category ...", Value = "" });
+
+			return list;
+		}
+
+
+		protected override void Dispose(bool disposing)
         {
             db.Dispose();
             db.Dispose();
