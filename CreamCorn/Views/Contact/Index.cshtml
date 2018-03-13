@@ -57,14 +57,14 @@
 
 		@grid.GetHtml(htmlAttributes: new { id = "datatable", ajaxUpdateContainerId = "grid" },
 	  fillEmptyRows: false,
-	  tableStyle: "table table-bordered table-hover companies",
+	  tableStyle: "table table-bordered table-hover contacts",
 	  mode: WebGridPagerModes.All,
 	  columns: grid.Columns(
 					 grid.Column("Id", style: "grid id", format: @<text><div id="c-@item.Id">@item.Id</div></text>),
 				  grid.Column("Name", "Name", style: "grid name"),
 		   grid.Column(header: "Action", canSort: false, style: "grid action",
 			 format: @<text>
-				@Html.EditIconFor((int)item.Id, "contacts")
+				@Html.EditIconFor((int)item.Id, "contact")
 				<a id="btnDelete" class="glyphicon glyphicon-trash" href="javascript:void(0);" style="text-decoration:none;padding-left:12px;" title="Delete" onClick="deleteContact(@item.Id, '@item.Name');"></a>
 			</text>)
 

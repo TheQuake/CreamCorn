@@ -1,0 +1,89 @@
+﻿@model CreamCorn.Models.PagedList<CreamCorn.Models.Category>
+@{
+	ViewBag.Title = "Category List";
+}
+
+<h1><span class="glyphicon glyphicon-tags"></span> @ViewBag.Title</h1>
+<div class="well">
+	@using (Html.BeginForm("index", null, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "__AjaxAntiForgeryForm" }))
+	{
+
+		@Html.AntiForgeryToken();
+
+
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div id="actionMessage" class="alert alert-dismissible alert-success" style="visibility:hidden;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<div id="actionMessageText"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="input-group">
+
+					<input type="text"
+						   name="filter"
+						   value="@ViewBag.filter"
+						   class="form-control"
+						   style="display: inline"
+						   placeholder="Search by name" />
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="submit">Go</button>
+					</span>
+
+				</div>
+			</div>
+			<div class="col-sm-5"></div>
+			<div class="pull-right col-lg-1">
+				<a class="btn btn-success" data-modal="" href="/Category/Add" id="btnAdd">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>
+			</div>
+		</div>
+
+		<div style="margin-top:17px;">
+			@{
+		var grid = new WebGrid(
+					canPage: true,
+					rowsPerPage: Model.PageSize,
+					canSort: true,
+					ajaxUpdateContainerId: "grid");
+
+		grid.Bind(Model.Content, rowCount: Model.TotalRecords, autoSortAndPage: false);
+		grid.Pager(WebGridPagerModes.All);
+
+		@grid.GetHtml(htmlAttributes: new { id = "datatable", ajaxUpdateContainerId = "grid" },
+   fillEmptyRows: false,
+   tableStyle: "table table-bordered table-hover categories",
+   mode: WebGridPagerModes.All,
+   columns: grid.Columns(
+				  grid.Column("Id", style: "grid id", format: @<text><div id="c-@item.Id">@item.Id</div></text>),
+			  grid.Column("Name", "Name", style: "grid name"),
+	   grid.Column(header: "Action", canSort: false, style: "grid action",
+		 format: @<text>
+			@Html.IconFor((int)item.Id, "companies")
+			@Html.EditIconFor((int)item.Id, "category")
+			<a id="btnDelete" class="glyphicon glyphicon-trash" href="javascript:void(0);" style="text-decoration:none;padding-left:12px;" title="Delete" onClick="deleteCategory(@item.Id, '@item.Name');"></a>
+		</text>)
+
+	   ));
+			}
+
+
+		</div>
+	}
+</div>
+
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id='myModalContent'></div>
+		</div>
+	</div>
+</div>
+

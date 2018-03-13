@@ -152,6 +152,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -221,6 +222,10 @@
     <Content Include="Views\Contact\Add.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Category\Add.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Companies.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

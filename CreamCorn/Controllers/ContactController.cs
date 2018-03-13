@@ -27,8 +27,8 @@ namespace CreamCorn.Controllers
                         .ToList();
 
             // Count
-            records.TotalRecords = db.Companies
-                         .Where(x => filter == null ||
+            records.TotalRecords = db.Contacts
+						 .Where(x => filter == null ||
                                (x.Name.Contains(filter)) || x.Name.Contains(filter)).Count();
 
             records.CurrentPage = page;

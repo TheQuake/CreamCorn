@@ -12,7 +12,7 @@ namespace CreamCorn
 	public static class HtmlExtensions
 	{
 
-        public static MvcHtmlString IconFor(this HtmlHelper helper, int companyId, string type)
+        public static MvcHtmlString IconFor(this HtmlHelper helper, int id, string type)
         {
             DbContext_CreamCorn db = new DbContext_CreamCorn();
             int count = 0;
@@ -24,13 +24,19 @@ namespace CreamCorn
             switch (type.ToLower())
             {
                 case "categories":
-                    count = db.CompanyCategories.Where(x => x.CompanyId.Equals(companyId)).Count();
+                    count = db.CompanyCategories.Where(x => x.CompanyId.Equals(id)).Count();
                     glyph = "glyphicon-tags";
                     empty = "There are no categories entered for this company";
                     title = "Categories";
                     break;
-                case "contacts":
-                    count = db.Contacts.Where(x => x.CompanyId.Equals(companyId)).Count();
+				case "companies":
+					count = db.Companies.Where(x => x.CategoryId.Equals(id)).Count();
+					glyph = "glyphicon-folder-close";
+					empty = "There are no companies under this category";
+					title = "Categories";
+					break;
+				case "contacts":
+                    count = db.Contacts.Where(x => x.CompanyId.Equals(id)).Count();
                     glyph = "glyphicon-user";
                     empty = "There are no contacts entered for this company";
                     title = "Contacts";
@@ -40,8 +46,15 @@ namespace CreamCorn
             string s = string.Empty;
             if (count > 0)
             {
-                s = string.Format("<a data-modal='' href='/company/{0}/{1}' id='{1}' title='{2}'><span class='glyphicon {3}'></span></a>  ", type, companyId, title, glyph);
-            }
+				if (type == "companies")
+				{
+					s = string.Format("<a data-modal='' href='/category/{0}/{1}' id='{1}' title='{2}'><span class='glyphicon {3}'></span></a>  ", type, id, title, glyph);
+				}
+				else
+				{
+					s = string.Format("<a data-modal='' href='/company/{0}/{1}' id='{1}' title='{2}'><span class='glyphicon {3}'></span></a>  ", type, id, title, glyph);
+				}
+			}
             else
             {
                 s = string.Format("<span class='glyphicon {0}' title='{1}'></span></a>  ", glyph, empty);
@@ -69,14 +82,8 @@ namespace CreamCorn
 		public static MvcHtmlString EditIconFor(this HtmlHelper helper, int id, string type)
 		{
 			string s = string.Empty;
-			if (type == "companies")
-			{
-				s = string.Format("<span style=padding-left:10px;></span><a data-modal='' href='/company/edit/{0}' id='{0}' title='Edit'><span class='glyphicon glyphicon-edit'></span></a>  ", id);
-			}
-			else
-			{
-				s = string.Format("<span style=padding-left:10px;></span><a data-modal='' href='/contact/edit/{0}' id='{0}' title='Edit'><span class='glyphicon glyphicon-edit'></span></a>  ", id);
-			}
+			s = string.Format("<span style=padding-left:10px;></span><a data-modal='' href='/{1}/edit/{0}' id='{0}' title='Edit'><span class='glyphicon glyphicon-edit'></span></a>  ", id, type);
+
 			return MvcHtmlString.Create(s);
 		}
 

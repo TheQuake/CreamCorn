@@ -72,5 +72,60 @@ function deleteCompany(id, name) {
 
 }
 
+function deleteContact(id, name) {
+
+	if (!confirm('Are you sure you wish to delete "' + name + '"?'))
+		return;
+
+	// find the data div, remove its row.
+	var divData = $("#c-" + id);
+	divData.closest("tr").remove();
+
+	var form = $('#__AjaxAntiForgeryForm');
+	var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+	var options = {};
+	options.url = '/contact/delete';
+	options.type = "POST";
+	options.data = { __RequestVerificationToken: token, Id: id, Name: name };
+	options.success = function (data) {
+		$('#actionMessage').css('visibility', 'visible');
+		$('#actionMessageText').text(data.message);
+	};
+	options.error = function (XMLHttpRequest, textStatus, errorThrown) {
+		$('#actionMessage').css('visibility', 'visible');
+		$('#actionMessageText').text("There was a problem deleting this contact: " + errorThrown);
+	};
+	$.ajax(options);
+
+}
+
+function deleteCategory(id, name) {
+
+	if (!confirm('Are you sure you wish to delete "' + name + '"?'))
+		return;
+
+	// find the data div, remove its row.
+	var divData = $("#c-" + id);
+	divData.closest("tr").remove();
+
+	var form = $('#__AjaxAntiForgeryForm');
+	var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+	var options = {};
+	options.url = '/category/delete';
+	options.type = "POST";
+	options.data = { __RequestVerificationToken: token, Id: id, Name: name };
+	options.success = function (data) {
+		$('#actionMessage').css('visibility', 'visible');
+		$('#actionMessageText').text(data.message);
+	};
+	options.error = function (XMLHttpRequest, textStatus, errorThrown) {
+		$('#actionMessage').css('visibility', 'visible');
+		$('#actionMessageText').text("There was a problem deleting this category: " + errorThrown);
+	};
+	$.ajax(options);
+
+}
 
 // Delete functions
